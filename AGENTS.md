@@ -47,4 +47,5 @@ python -m http.server 8000
 
 - Must render correctly in Chrome and Firefox (target police department computers).
 - Print layout must be clean: `@media print` styles in a dedicated CSS file.
+- **Fully responsive** — must work on tablets and mobile (target: police tablets in field). Use `@media` breakpoints for sidebar collapse, font sizing, and form layout.
 - Do not use `.innerHTML` with unsanitized user input; prefer `textContent` or template cloning if user data is interpolated.
