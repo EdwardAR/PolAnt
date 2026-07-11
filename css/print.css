@@ -1,0 +1,58 @@
+/* ============================================
+   Estilos de impresión
+   ============================================ */
+
+@media print {
+  @page {
+    margin: 20mm 25mm;
+    size: A4;
+  }
+
+  body {
+    background: #fff;
+    font-size: 12pt;
+    color: #000;
+  }
+
+  #app-header,
+  #sidebar,
+  #form-view,
+  #preview-toolbar,
+  #form-actions,
+  #welcome {
+    display: none !important;
+  }
+
+  #app-body {
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  #main-content {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  #preview-view {
+    display: block !important;
+  }
+
+  #preview-content {
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+  }
+
+  #preview-content .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
+
+.print-only {
+  display: none;
+}
