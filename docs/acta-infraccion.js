@@ -52,8 +52,7 @@ export const actaInfraccion = {
     {
       title: 'Infracción',
       fields: [
-        { name: 'articulos', label: 'Artículo/s infringido/s', type: 'text', required: true,
-          placeholder: 'Ej: Ley 24449 Art. 77 inc. a — Ley 13927 Art. 40' },
+        { name: 'articulos', label: 'Artículo/s infringido/s', type: 'normativa' },
         { name: 'descripcionInfraccion', label: 'Descripción de la infracción', type: 'textarea', rows: 5, required: true,
           placeholder: 'Descripción detallada de la conducta infraccionaria' },
         { name: 'tipoInfraccion', label: 'Tipo de infracción', type: 'select',

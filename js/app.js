@@ -49,7 +49,8 @@ function selectDocument(id) {
   previewView.classList.add('hidden');
   formTitle.textContent = doc.title;
   formEngine.clearForm(docForm);
-  docForm.innerHTML = formEngine.renderForm(doc.sections);
+  docForm.innerHTML = '';
+  docForm.appendChild(formEngine.renderForm(doc.sections));
   document.querySelectorAll('.doc-btn').forEach(b => b.classList.remove('active'));
   const btn = docList.querySelector(`[data-doc-id="${id}"]`);
   if (btn) btn.classList.add('active');
@@ -81,6 +82,38 @@ function printDocument() {
   window.print();
 }
 
+function downloadWord() {
+  const content = previewContent.innerHTML;
+  const title = currentDocId ? docRegistry[currentDocId].title : 'documento';
+  const styles = document.querySelector('#preview-content style')?.innerHTML || '';
+
+  const fullDoc = `<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="UTF-8">
+<title>${title}</title>
+<style>
+  body { font-family: "Segoe UI", Arial, sans-serif; font-size: 12pt; line-height: 1.6; margin: 2cm auto; max-width: 210mm; padding: 0 20px; }
+  table { border-collapse: collapse; width: 100%; }
+  td, th { padding: 4px 8px; }
+  ${styles}
+</style>
+</head>
+<body>${content}</body></html>`;
+
+  const blob = new Blob([fullDoc], { type: 'application/msword' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${title.replace(/\s+/g, '_')}.doc`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 document.getElementById('btn-generate').addEventListener('click', generateDocument);
 document.getElementById('btn-clear').addEventListener('click', () => {
   if (currentDocId) {
@@ -89,6 +122,7 @@ document.getElementById('btn-clear').addEventListener('click', () => {
   }
 });
 document.getElementById('btn-back').addEventListener('click', goBack);
+document.getElementById('btn-word').addEventListener('click', downloadWord);
 document.getElementById('btn-print').addEventListener('click', printDocument);
 
 renderSidebar();
