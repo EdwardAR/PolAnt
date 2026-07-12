@@ -126,6 +126,10 @@ html, body {
   background: #4f6bf5;
 }
 
+.ai-btn-gemini {
+  background: #6c5ce7;
+}
+
 .welcome-ai-info {
   margin-top: 20px;
   font-size: 15px;
