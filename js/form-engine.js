@@ -1,14 +1,11 @@
-import { normativa } from '../docs/normativa.js';
-import { icons } from './icons.js';
-
-export class FormEngine {
+class FormEngine {
   renderForm(sections) {
     const container = document.createElement('div');
     for (const section of sections) {
       const sectionEl = document.createElement('div');
       sectionEl.className = 'form-section-card';
 
-      if (section.title) {
+      if (section.title || section.icon) {
         const h3 = document.createElement('h3');
         h3.className = 'section-title';
 
@@ -19,9 +16,11 @@ export class FormEngine {
           h3.appendChild(iconSpan);
         }
 
-        const textSpan = document.createElement('span');
-        textSpan.textContent = section.title;
-        h3.appendChild(textSpan);
+        if (section.title) {
+          const textSpan = document.createElement('span');
+          textSpan.textContent = section.title;
+          h3.appendChild(textSpan);
+        }
 
         sectionEl.appendChild(h3);
       }

@@ -1,10 +1,3 @@
-import { FormEngine } from './form-engine.js';
-import { TemplateEngine } from './template-engine.js';
-import { parteAccidente } from '../docs/parte-accidente.js';
-import { actaInfraccion } from '../docs/acta-infraccion.js';
-import { prompts } from '../docs/prompts.js';
-import { icons } from './icons.js';
-
 const docRegistry = {};
 let currentDocId = null;
 
@@ -163,7 +156,7 @@ function showToast(msg) {
 
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-    if (!formView.classList.contains('hidden') && !welcome.classList.contains('hidden')) {
+    if (!formView.classList.contains('hidden') && welcome.classList.contains('hidden')) {
       e.preventDefault();
       generateDocument();
     }

@@ -1,4 +1,4 @@
-export const prompts = [
+const prompts = [
   // ─── Redacción Jurídica ───────────────────────────────────────
   {
     id: 'redactar-parte-accidente',

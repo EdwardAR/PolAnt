@@ -1,9 +1,10 @@
-export const actaInfraccion = {
+const actaInfraccion = {
   id: 'acta-infraccion',
   title: 'Acta de Infracción',
   sections: [
     {
-       icon: 'calendar',
+      title: 'Fecha y Hora',
+      icon: 'calendar',
       fields: [
         { name: 'nroActa', label: 'N° de Acta', type: 'text', required: true },
         { name: 'fecha', label: 'Fecha', type: 'date', required: true },
@@ -11,7 +12,8 @@ export const actaInfraccion = {
       ]
     },
     {
-       icon: 'pin',
+      title: 'Lugar de la Infracción',
+      icon: 'pin',
       fields: [
         { name: 'calle', label: 'Calle / Ruta', type: 'text', required: true },
         { name: 'altura', label: 'Altura / Km', type: 'text' },
@@ -20,7 +22,8 @@ export const actaInfraccion = {
       ]
     },
     {
-       icon: 'user',
+      title: 'Datos del Infractor',
+      icon: 'user',
       fields: [
         { name: 'infractorNombre', label: 'Apellido y Nombre', type: 'text', required: true, autocomplete: 'name' },
         { name: 'infractorDni', label: 'DNI', type: 'text', required: true },
@@ -29,7 +32,8 @@ export const actaInfraccion = {
       ]
     },
     {
-       icon: 'creditCard',
+      title: 'Licencia de Conducir',
+      icon: 'creditCard',
       fields: [
         { name: 'licenciaClase', label: 'Clase', type: 'text' },
         { name: 'licenciaNro', label: 'N° de Licencia', type: 'text' },
@@ -39,7 +43,8 @@ export const actaInfraccion = {
       ]
     },
     {
-       icon: 'carFront',
+      title: 'Vehículo',
+      icon: 'carFront',
       fields: [
         { name: 'vehiculoDominio', label: 'Dominio (Patente)', type: 'text', required: true },
         { name: 'vehiculoTipo', label: 'Tipo', type: 'select', required: true,
@@ -50,7 +55,8 @@ export const actaInfraccion = {
       ]
     },
     {
-       icon: 'alertTriangle',
+      title: 'Infracción',
+      icon: 'alertTriangle',
       fields: [
         { name: 'articulos', label: 'Artículo/s infringido/s', type: 'normativa' },
         { name: 'descripcionInfraccion', label: 'Descripción de la infracción', type: 'textarea', rows: 5, required: true,
@@ -62,7 +68,8 @@ export const actaInfraccion = {
       ]
     },
     {
-       icon: 'bell',
+      title: 'Notificación',
+      icon: 'bell',
       fields: [
         { name: 'notificadoEn', label: 'Notificado en el acto', type: 'select', required: true,
           options: [
@@ -80,7 +87,8 @@ export const actaInfraccion = {
       ]
     },
     {
-       icon: 'shield',
+      title: 'Autoridad Actuante',
+      icon: 'shield',
       fields: [
         { name: 'inspectorNombre', label: 'Apellido y Nombre del Inspector', type: 'text', required: true },
         { name: 'inspectorPlaca', label: 'N° de Placa / Legajo', type: 'text', required: true },

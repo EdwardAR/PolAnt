@@ -1,4 +1,4 @@
-export class TemplateEngine {
+class TemplateEngine {
   render(template, data) {
     return template.replace(/\{\{([^}]+)\}\}/g, (match, key) => {
       const value = data[key.trim()];

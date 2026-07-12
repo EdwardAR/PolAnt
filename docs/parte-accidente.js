@@ -1,9 +1,10 @@
-export const parteAccidente = {
+const parteAccidente = {
   id: 'parte-accidente',
   title: 'Parte de Accidente',
   sections: [
     {
-       icon: 'calendar',
+      title: 'Fecha y Hora',
+      icon: 'calendar',
       fields: [
         { name: 'nroParte', label: 'N° de Parte', type: 'text', required: true },
         { name: 'fecha', label: 'Fecha', type: 'date', required: true },
@@ -11,7 +12,8 @@ export const parteAccidente = {
       ]
     },
     {
-       icon: 'pin',
+      title: 'Lugar del Hecho',
+      icon: 'pin',
       fields: [
         { name: 'calle', label: 'Calle / Ruta', type: 'text', required: true },
         { name: 'altura', label: 'Altura / Km', type: 'text' },
@@ -22,7 +24,8 @@ export const parteAccidente = {
       ]
     },
     {
-       icon: 'tag',
+      title: 'Clasificación del Accidente',
+      icon: 'tag',
       fields: [
         {
           name: 'tipoAccidente', label: 'Tipo de Accidente', type: 'select', required: true,
@@ -43,7 +46,8 @@ export const parteAccidente = {
       ]
     },
     {
-       icon: 'carFront',
+      title: 'Vehículo 1',
+      icon: 'carFront',
       fields: [
         { name: 'v1Dominio', label: 'Dominio (Patente)', type: 'text', required: true },
         { name: 'v1Marca', label: 'Marca', type: 'text', required: true },
@@ -62,7 +66,8 @@ export const parteAccidente = {
       ]
     },
     {
-       icon: 'carFront',
+      title: 'Vehículo 2',
+      icon: 'carFront',
       fields: [
         { name: 'v2Dominio', label: 'Dominio (Patente)', type: 'text' },
         { name: 'v2Marca', label: 'Marca', type: 'text' },
@@ -81,7 +86,8 @@ export const parteAccidente = {
       ]
     },
     {
-       icon: 'user',
+      title: 'Personas y Lesiones',
+      icon: 'user',
       fields: [
         { name: 'hayLesionados', label: '¿Hubo lesionados?', type: 'select', required: true,
           options: [
@@ -96,7 +102,8 @@ export const parteAccidente = {
       ]
     },
     {
-       icon: 'file',
+      title: 'Narración y Croquis',
+      icon: 'file',
       fields: [
         { name: 'croquis', label: 'Croquis / Esquema', type: 'textarea', rows: 6,
           placeholder: 'Describa la posición de los vehículos, sentido de circulación, señalización, etc.' },
@@ -109,7 +116,8 @@ export const parteAccidente = {
       ]
     },
     {
-       icon: 'users',
+      title: 'Testigos',
+      icon: 'users',
       fields: [
         { name: 'testigo1', label: 'Testigo 1 (Apellido y Nombre)', type: 'text' },
         { name: 'testigo1Dni', label: 'DNI Testigo 1', type: 'text' },
@@ -120,7 +128,8 @@ export const parteAccidente = {
       ]
     },
     {
-       icon: 'shield',
+      title: 'Autoridad Actuante',
+      icon: 'shield',
       fields: [
         { name: 'oficialNombre', label: 'Apellido y Nombre del Oficial', type: 'text', required: true },
         { name: 'oficialPlaca', label: 'N° de Placa / Legajo', type: 'text', required: true },

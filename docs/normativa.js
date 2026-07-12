@@ -1,4 +1,4 @@
-export const normativa = {
+const normativa = {
   leyes: [
     {
       nombre: 'Ley Nacional de Tránsito 24.449',
