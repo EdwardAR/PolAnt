@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Servidor HTTP local con MIME types correctos para ES modules."""
+"""Servidor HTTP local con MIME types correctos.
+Necesario en Windows: python -m http.server sirve .js como text/plain, lo que bloquea la carga. Este archivo corrige los MIME types."""
 
 import http.server
 
