@@ -755,6 +755,18 @@ textarea:invalid {
   .normativa-list {
     max-height: 300px;
   }
+
+  .prompt-cards {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  .prompt-detail-card {
+    padding: 24px 24px;
+  }
+
+  #prompts-subtitle {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -817,6 +829,209 @@ textarea:invalid {
   .normativa-list {
     max-height: 250px;
   }
+
+  .prompt-detail-text {
+    max-height: 60vh;
+  }
+
+  .prompt-cards {
+    gap: 12px;
+  }
+
+  #prompts-title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  #app-header {
+    padding: 6px 10px;
+    gap: 4px;
+  }
+
+  #app-header h1 {
+    font-size: 13px;
+  }
+
+  .header-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header-left {
+    gap: 6px;
+  }
+
+  .header-right .ai-btn {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  .header-right .ai-btn img {
+    width: 14px;
+    height: 14px;
+  }
+
+  #sidebar {
+    max-height: 160px;
+  }
+
+  #doc-list,
+  #prompt-list {
+    padding: 4px 8px;
+    gap: 3px;
+  }
+
+  .doc-btn,
+  .prompt-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 5px;
+  }
+
+  #main-content {
+    padding: 10px 12px;
+  }
+
+  .prompt-card {
+    padding: 14px;
+  }
+
+  .prompt-card-title {
+    font-size: 15px;
+  }
+
+  .prompt-card-desc {
+    font-size: 13px;
+  }
+
+  .prompt-card-actions {
+    flex-direction: column;
+  }
+
+  .prompt-detail-card {
+    padding: 16px 14px;
+  }
+
+  .prompt-detail-title {
+    font-size: 16px;
+  }
+
+  .prompt-detail-text {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .form-section-card {
+    padding: 12px 12px;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-bottom: 6px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 9px 10px;
+    font-size: 14px;
+  }
+
+  .fields-grid {
+    gap: 10px;
+  }
+
+  #form-title {
+    font-size: 18px;
+  }
+
+  #form-header {
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+  }
+
+  .btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  #preview-content {
+    padding: 14px 12px;
+    font-size: 11pt;
+  }
+
+  #preview-toolbar {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #preview-toolbar .btn {
+    width: 100%;
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .normativa-item {
+    padding: 5px 4px 5px 8px;
+    font-size: 13px;
+  }
+
+  .normativa-list {
+    max-height: 200px;
+  }
+
+  .form-group-normativa {
+    padding: 10px 12px;
+  }
+
+  #welcome h2 {
+    font-size: 18px;
+  }
+
+  .welcome-ai-info {
+    font-size: 13px;
+  }
+
+  #prompts-header {
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+  }
+
+  #prompts-title {
+    font-size: 18px;
+  }
+
+  #prompts-subtitle {
+    font-size: 13px;
+  }
+
+  .prompt-category-title {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .prompt-detail-badge {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+
+  .prompt-detail-desc {
+    font-size: 13px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+
+  .copy-feedback {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -856,17 +1071,25 @@ textarea:invalid {
     flex-direction: column;
   }
 
+  /* Sidebar: compact horizontal bars */
   #sidebar {
     width: 100%;
-    max-height: 140px;
+    max-height: 200px;
     overflow-y: auto;
+  }
+
+  .sidebar-section + .sidebar-section {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 0;
+    padding-top: 0;
   }
 
   #sidebar h2 {
     display: none;
   }
 
-  #doc-list {
+  #doc-list,
+  #prompt-list {
     display: flex;
     gap: 4px;
     padding: 6px 10px;
@@ -874,17 +1097,63 @@ textarea:invalid {
     white-space: nowrap;
   }
 
-  #doc-list li {
+  #doc-list li,
+  #prompt-list li {
     margin-bottom: 0;
     flex-shrink: 0;
   }
 
-  .doc-btn {
+  .doc-btn,
+  .prompt-btn {
     padding: 10px 16px;
     font-size: 14px;
     border-radius: 6px;
   }
 
+  /* Prompt cards: single column */
+  .prompt-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .prompt-card {
+    padding: 16px;
+  }
+
+  .prompt-card-actions .btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* Prompt detail */
+  .prompt-detail-card {
+    padding: 20px 18px;
+  }
+
+  .prompt-detail-title {
+    font-size: 18px;
+  }
+
+  .prompt-detail-text {
+    padding: 14px;
+    font-size: 13px;
+    max-height: 60vh;
+  }
+
+  #prompts-title {
+    font-size: 20px;
+  }
+
+  .btn-copy {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .prompt-detail-actions {
+    flex-direction: column;
+  }
+
+  /* General */
   #form-view {
     max-width: 100%;
   }
@@ -933,5 +1202,29 @@ textarea:invalid {
   .normativa-item {
     padding: 6px 6px 6px 10px;
     font-size: 14px;
+  }
+
+  #prompts-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+
+  #prompts-subtitle {
+    font-size: 14px;
+  }
+
+  .prompt-category-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  /* Welcome */
+  #welcome h2 {
+    font-size: 22px;
+  }
+
+  .welcome-ai-info {
+    font-size: 14px;
+    max-width: 100%;
   }
 }
