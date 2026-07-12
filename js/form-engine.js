@@ -70,6 +70,16 @@ export class FormEngine {
       if (field.placeholder) input.placeholder = field.placeholder;
     }
 
+    if (field.required) {
+      input.required = true;
+      if (field.type !== 'checkbox' && field.type !== 'normativa') {
+        const errorSpan = document.createElement('span');
+        errorSpan.className = 'form-error';
+        errorSpan.textContent = 'Este campo es obligatorio';
+        group.appendChild(errorSpan);
+      }
+    }
+
     group.appendChild(input);
     return group;
   }
@@ -171,5 +181,24 @@ export class FormEngine {
     }
     const checkboxes = formEl.querySelectorAll('input[type="checkbox"]');
     for (const cb of checkboxes) cb.checked = false;
+  }
+
+  validateForm(formEl) {
+    const required = formEl.querySelectorAll('[required]');
+    let firstInvalid = null;
+    for (const el of required) {
+      if (!el.checkValidity()) {
+        el.style.borderColor = '#c0392b';
+        if (!firstInvalid) firstInvalid = el;
+      } else {
+        el.style.borderColor = '';
+      }
+    }
+    if (firstInvalid) {
+      firstInvalid.focus();
+      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+    return true;
   }
 }

@@ -13,9 +13,11 @@ There is no build tooling. To work on the project:
 
 ```bash
 # Serve locally (pick one):
+python server.py
 npx serve .
-python -m http.server 8000
-# or open index.html directly via file://
+# NOTA: python -m http.server 8000 NO funciona en Windows
+#       (sirve .js como text/plain, bloquea los ES modules).
+#       Usar server.py o npx serve.
 ```
 
 ## Architecture & Conventions

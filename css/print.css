@@ -19,7 +19,8 @@
   #form-view,
   #preview-toolbar,
   #form-actions,
-  #welcome {
+  #welcome,
+  #prompts-view {
     display: none !important;
   }
 

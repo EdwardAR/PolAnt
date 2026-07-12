@@ -33,8 +33,14 @@
 
     <div id="app-body">
       <nav id="sidebar">
-        <h2>Documentos</h2>
-        <ul id="doc-list"></ul>
+        <div class="sidebar-section">
+          <h2>Documentos</h2>
+          <ul id="doc-list"></ul>
+        </div>
+        <div class="sidebar-section">
+          <h2>Prompts para IA</h2>
+          <ul id="prompt-list"></ul>
+        </div>
       </nav>
 
       <main id="main-content">
@@ -62,6 +68,18 @@
             <button type="button" id="btn-print" class="btn btn-secondary">Imprimir / PDF</button>
           </div>
           <div id="preview-content"></div>
+        </div>
+
+        <div id="prompts-view" class="hidden">
+          <div id="prompts-header">
+            <h2 id="prompts-title">Asistente de Prompts</h2>
+            <p id="prompts-subtitle">Seleccioná un prompt estructurado, copialo y pegálo en ChatGPT o DeepSeek con tus datos.</p>
+          </div>
+          <div id="prompts-categories"></div>
+          <div id="prompts-detail" class="hidden">
+            <button type="button" id="btn-prompts-back" class="btn btn-secondary">&larr; Volver a la lista</button>
+            <div id="prompt-content"></div>
+          </div>
         </div>
       </main>
     </div>
