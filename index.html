@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es-PE">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PolAnt — Generador de Documentos de Tránsito</title>
-  <meta name="description" content="Generador de documentos oficiales de tránsito: partes de accidente y actas de infracción para uso policial. Incluye asistente de prompts para IA.">
+  <title>PolAnt — Generador de Documentos de Tránsito (Perú)</title>
+  <meta name="description" content="Generador de documentos oficiales de tránsito para la Policía Nacional del Perú: partes de accidente y actas de infracción. Incluye asistente de prompts para IA.">
 
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -17,8 +17,8 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PolAnt">
-  <meta property="og:title" content="PolAnt — Generador de Documentos de Tránsito">
-  <meta property="og:description" content="Generador de documentos oficiales de tránsito: partes de accidente y actas de infracción para uso policial.">
+  <meta property="og:title" content="PolAnt — Generador de Documentos de Tránsito (Perú)">
+  <meta property="og:description" content="Generador de documentos oficiales de tránsito para la Policía Nacional del Perú: partes de accidente y actas de infracción.">
   <meta property="og:url" content="https://edwardar.github.io/PolAnt/">
   <meta property="og:image" content="https://edwardar.github.io/PolAnt/img/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -45,19 +45,19 @@
       <div class="header-right">
         <div class="ai-buttons">
           <a href="https://chatgpt.com/" target="_blank" rel="noopener" class="ai-btn ai-btn-chatgpt" title="Consultar con ChatGPT">
-            <img src="img/chatgpt.svg" alt="ChatGPT" width="22" height="22">
+            <span class="ai-btn-icon"><img src="img/chatgpt.svg" alt="" width="16" height="16"></span>
             <span>ChatGPT</span>
           </a>
           <a href="https://chat.deepseek.com/" target="_blank" rel="noopener" class="ai-btn ai-btn-deepseek" title="Consultar con DeepSeek">
-            <img src="img/deepseek.svg" alt="DeepSeek" width="22" height="22">
+            <span class="ai-btn-icon"><img src="img/deepseek.svg" alt="" width="16" height="16"></span>
             <span>DeepSeek</span>
           </a>
           <a href="https://gemini.google.com/app" target="_blank" rel="noopener" class="ai-btn ai-btn-gemini" title="Consultar con Gemini">
-            <img src="img/gemini.svg" alt="Gemini" width="22" height="22">
+            <span class="ai-btn-icon"><img src="img/gemini.svg" alt="" width="16" height="16"></span>
             <span>Gemini</span>
           </a>
         </div>
-        <span class="badge">Policía - Área Tránsito</span>
+        <span class="badge">PNP - Div. Tránsito Perú</span>
       </div>
     </header>
 
@@ -75,9 +75,12 @@
 
       <main id="main-content" role="region" aria-label="Contenido principal">
         <div id="welcome">
-          <h2>Bienvenido</h2>
-          <p>Seleccione un tipo de documento en el panel lateral para comenzar a generar un documento oficial de tránsito.</p>
-          <p class="welcome-ai-info">Utilice los botones <strong>ChatGPT</strong>, <strong>DeepSeek</strong> y <strong>Gemini</strong> en la barra superior para consultar sobre redacción jurídica o normativa de tránsito.</p>
+          <div class="welcome-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h2>Generador de Documentos</h2>
+          <p>Seleccioná un tipo de documento en el panel lateral para comenzar a confeccionar un documento oficial de tránsito (normativa peruana).</p>
+          <p class="welcome-ai-info">Usá los botones <strong>ChatGPT</strong>, <strong>DeepSeek</strong> y <strong>Gemini</strong> en la barra superior, o explorá los <strong>Prompts para IA</strong> para redacción jurídica y consultas normativas.</p>
         </div>
 
         <div id="form-view" class="hidden">
@@ -109,10 +112,14 @@
           </div>
         </div>
 
-        <div id="prompts-view" class="hidden">
+          <div id="prompts-view" class="hidden">
           <div id="prompts-header">
             <h2 id="prompts-title">Asistente de Prompts</h2>
-            <p id="prompts-subtitle">Seleccioná un prompt estructurado, copialo y pegálo en ChatGPT o DeepSeek con tus datos.</p>
+            <p id="prompts-subtitle">Seleccioná un prompt estructurado, copialo y pegálo en ChatGPT, DeepSeek o Gemini con tus datos.</p>
+          </div>
+          <div class="prompt-search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="prompt-search" placeholder="Buscar prompts por título, descripción o categoría..." autocomplete="off">
           </div>
           <div id="prompts-categories"></div>
           <div id="prompts-detail" class="hidden">
@@ -132,6 +139,12 @@
   <script src="js/template-engine.js"></script>
   <script src="js/form-engine.js"></script>
   <script src="js/app.js"></script>
-  <div id="toast" role="alert" aria-live="polite" class="toast hidden"></div>
+  <button id="scroll-top" aria-label="Volver al inicio" title="Volver al inicio">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  <div id="toast" role="alert" aria-live="polite" class="toast hidden">
+    <span class="toast-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+    <span id="toast-msg"></span>
+  </div>
 </body>
 </html>

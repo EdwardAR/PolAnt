@@ -146,8 +146,9 @@ function initFormProgress(total) {
 
 function showToast(msg) {
   const toast = document.getElementById('toast');
-  if (!toast) return;
-  toast.textContent = msg;
+  const toastMsg = document.getElementById('toast-msg');
+  if (!toast || !toastMsg) return;
+  toastMsg.textContent = msg;
   toast.classList.remove('hidden');
   setTimeout(() => toast.classList.add('hidden'), 2500);
 }
@@ -384,6 +385,47 @@ document.getElementById('btn-prompts-back').addEventListener('click', () => {
     showPromptsCategory(null);
   }
 });
+
+// ─── Scroll to Top ─────────────────────────────────────────────
+
+const scrollTopBtn = document.getElementById('scroll-top');
+const mainContent = document.getElementById('main-content');
+
+mainContent.addEventListener('scroll', () => {
+  if (mainContent.scrollTop > 200) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+// ─── Prompt Search ────────────────────────────────────────────
+
+const promptSearch = document.getElementById('prompt-search');
+let searchTimeout = null;
+
+if (promptSearch) {
+  promptSearch.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      const q = promptSearch.value.trim().toLowerCase();
+      const categories = document.querySelectorAll('.prompt-category');
+      for (const cat of categories) {
+        let hasVisible = false;
+        const cardsInCat = cat.querySelectorAll('.prompt-card');
+        for (const card of cardsInCat) {
+          const title = card.querySelector('.prompt-card-title')?.textContent?.toLowerCase() || '';
+          const desc = card.querySelector('.prompt-card-desc')?.textContent?.toLowerCase() || '';
+          const badge = card.querySelector('.prompt-card-badge')?.textContent?.toLowerCase() || '';
+          const match = !q || title.includes(q) || desc.includes(q) || badge.includes(q);
+          card.style.display = match ? '' : 'none';
+          if (match) hasVisible = true;
+        }
+        cat.style.display = hasVisible ? '' : 'none';
+      }
+    }, 150);
+  });
+}
 
 renderSidebar();
 renderPromptSidebar();

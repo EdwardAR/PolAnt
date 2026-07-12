@@ -1,6 +1,6 @@
 const parteAccidente = {
   id: 'parte-accidente',
-  title: 'Parte de Accidente',
+  title: 'Parte de Accidente de Tránsito',
   sections: [
     {
       title: 'Fecha y Hora',
@@ -15,12 +15,12 @@ const parteAccidente = {
       title: 'Lugar del Hecho',
       icon: 'pin',
       fields: [
-        { name: 'calle', label: 'Calle / Ruta', type: 'text', required: true },
+        { name: 'calle', label: 'Calle / Carretera', type: 'text', required: true },
         { name: 'altura', label: 'Altura / Km', type: 'text' },
         { name: 'entreCalle1', label: 'Entre calle', type: 'text' },
         { name: 'entreCalle2', label: 'Y calle', type: 'text' },
-        { name: 'localidad', label: 'Localidad', type: 'text', required: true, autocomplete: 'address-level2' },
-        { name: 'partido', label: 'Partido / Departamento', type: 'text', autocomplete: 'address-level1' }
+        { name: 'distrito', label: 'Distrito', type: 'text', required: true },
+        { name: 'provincia', label: 'Provincia / Departamento', type: 'text', required: true }
       ]
     },
     {
@@ -49,40 +49,40 @@ const parteAccidente = {
       title: 'Vehículo 1',
       icon: 'carFront',
       fields: [
-        { name: 'v1Dominio', label: 'Dominio (Patente)', type: 'text', required: true },
+        { name: 'v1Placa', label: 'Placa (N° de placa)', type: 'text', required: true },
         { name: 'v1Marca', label: 'Marca', type: 'text', required: true },
         { name: 'v1Modelo', label: 'Modelo', type: 'text' },
         { name: 'v1Tipo', label: 'Tipo', type: 'select',
           options: ['Automóvil', 'Camioneta', 'Camión', 'Motocicleta', 'Bicicleta', 'Colectivo', 'Acoplado', 'Maquinaria agrícola', 'Otro'] },
         { name: 'v1Anio', label: 'Año', type: 'text' },
         { name: 'v1Color', label: 'Color', type: 'text' },
-        { name: 'v1Conductor', label: 'Conductor (Apellido y Nombre)', type: 'text', required: true, autocomplete: 'name' },
+        { name: 'v1Conductor', label: 'Conductor (Apellidos y Nombres)', type: 'text', required: true, autocomplete: 'name' },
         { name: 'v1ConductorDni', label: 'DNI del Conductor', type: 'text' },
         { name: 'v1LicenciaClase', label: 'Clase de Licencia', type: 'text' },
         { name: 'v1LicenciaNro', label: 'N° de Licencia', type: 'text' },
         { name: 'v1Propietario', label: 'Propietario', type: 'text' },
-        { name: 'v1Seguro', label: 'Compañía de Seguro', type: 'text' },
-        { name: 'v1Poliza', label: 'N° de Póliza', type: 'text' }
+        { name: 'v1Soat', label: 'SOAT (Compañía)', type: 'text' },
+        { name: 'v1Poliza', label: 'N° de Póliza SOAT', type: 'text' }
       ]
     },
     {
       title: 'Vehículo 2',
       icon: 'carFront',
       fields: [
-        { name: 'v2Dominio', label: 'Dominio (Patente)', type: 'text' },
+        { name: 'v2Placa', label: 'Placa (N° de placa)', type: 'text' },
         { name: 'v2Marca', label: 'Marca', type: 'text' },
         { name: 'v2Modelo', label: 'Modelo', type: 'text' },
         { name: 'v2Tipo', label: 'Tipo', type: 'select',
           options: ['Automóvil', 'Camioneta', 'Camión', 'Motocicleta', 'Bicicleta', 'Colectivo', 'Acoplado', 'Maquinaria agrícola', 'Otro'] },
         { name: 'v2Anio', label: 'Año', type: 'text' },
         { name: 'v2Color', label: 'Color', type: 'text' },
-        { name: 'v2Conductor', label: 'Conductor (Apellido y Nombre)', type: 'text', autocomplete: 'name' },
+        { name: 'v2Conductor', label: 'Conductor (Apellidos y Nombres)', type: 'text', autocomplete: 'name' },
         { name: 'v2ConductorDni', label: 'DNI del Conductor', type: 'text' },
         { name: 'v2LicenciaClase', label: 'Clase de Licencia', type: 'text' },
         { name: 'v2LicenciaNro', label: 'N° de Licencia', type: 'text' },
         { name: 'v2Propietario', label: 'Propietario', type: 'text' },
-        { name: 'v2Seguro', label: 'Compañía de Seguro', type: 'text' },
-        { name: 'v2Poliza', label: 'N° de Póliza', type: 'text' }
+        { name: 'v2Soat', label: 'SOAT (Compañía)', type: 'text' },
+        { name: 'v2Poliza', label: 'N° de Póliza SOAT', type: 'text' }
       ]
     },
     {
@@ -119,10 +119,10 @@ const parteAccidente = {
       title: 'Testigos',
       icon: 'users',
       fields: [
-        { name: 'testigo1', label: 'Testigo 1 (Apellido y Nombre)', type: 'text' },
+        { name: 'testigo1', label: 'Testigo 1 (Apellidos y Nombres)', type: 'text' },
         { name: 'testigo1Dni', label: 'DNI Testigo 1', type: 'text' },
         { name: 'testigo1Domicilio', label: 'Domicilio Testigo 1', type: 'text', autocomplete: 'street-address' },
-        { name: 'testigo2', label: 'Testigo 2 (Apellido y Nombre)', type: 'text' },
+        { name: 'testigo2', label: 'Testigo 2 (Apellidos y Nombres)', type: 'text' },
         { name: 'testigo2Dni', label: 'DNI Testigo 2', type: 'text' },
         { name: 'testigo2Domicilio', label: 'Domicilio Testigo 2', type: 'text', autocomplete: 'street-address' }
       ]
@@ -131,10 +131,10 @@ const parteAccidente = {
       title: 'Autoridad Actuante',
       icon: 'shield',
       fields: [
-        { name: 'oficialNombre', label: 'Apellido y Nombre del Oficial', type: 'text', required: true },
-        { name: 'oficialPlaca', label: 'N° de Placa / Legajo', type: 'text', required: true },
-        { name: 'oficialUnidad', label: 'Unidad / Dependencia', type: 'text', required: true },
-        { name: 'firma', label: 'Firma digital / Rúbrica', type: 'text',
+        { name: 'oficialNombre', label: 'Apellidos y Nombres del Efectivo PNP', type: 'text', required: true },
+        { name: 'oficialPlaca', label: 'N° de Placa / CIP', type: 'text', required: true },
+        { name: 'oficialUnidad', label: 'Unidad / Comisaría / División', type: 'text', required: true },
+        { name: 'firma', label: 'Firma / Rúbrica', type: 'text',
           placeholder: 'Nombre completo y cargo' }
       ]
     }
@@ -154,9 +154,9 @@ const parteAccidente = {
   </table>
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Lugar del Hecho</h2>
-  <p><strong>Calle/Ruta:</strong> {{calle}} {{altura}}</p>
+  <p><strong>Calle/Carretera:</strong> {{calle}} {{altura}}</p>
   <p><strong>Entre calles:</strong> {{entreCalle1}} y {{entreCalle2}}</p>
-  <p><strong>Localidad:</strong> {{localidad}} — <strong>Partido:</strong> {{partido}}</p>
+  <p><strong>Distrito:</strong> {{distrito}} — <strong>Provincia:</strong> {{provincia}}</p>
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Clasificación</h2>
   <p><strong>Tipo de accidente:</strong> {{tipoAccidente}}</p>
@@ -164,24 +164,24 @@ const parteAccidente = {
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Vehículo 1</h2>
   <table style="width: 100%; border-collapse: collapse; border: 1px solid #000; margin-bottom: 12px;">
-    <tr><td style="border: 1px solid #000; padding: 4px 8px; width: 30%;"><strong>Dominio</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v1Dominio}}</td></tr>
+    <tr><td style="border: 1px solid #000; padding: 4px 8px; width: 30%;"><strong>Placa</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v1Placa}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Marca / Modelo</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v1Marca}} {{v1Modelo}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Tipo / Año / Color</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v1Tipo}} — {{v1Anio}} — {{v1Color}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Conductor</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v1Conductor}} (DNI {{v1ConductorDni}})</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Licencia</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">Clase {{v1LicenciaClase}} — N° {{v1LicenciaNro}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Propietario</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v1Propietario}}</td></tr>
-    <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Seguro</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v1Seguro}} — Póliza N° {{v1Poliza}}</td></tr>
+    <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>SOAT</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v1Soat}} — Póliza N° {{v1Poliza}}</td></tr>
   </table>
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Vehículo 2</h2>
   <table style="width: 100%; border-collapse: collapse; border: 1px solid #000; margin-bottom: 12px;">
-    <tr><td style="border: 1px solid #000; padding: 4px 8px; width: 30%;"><strong>Dominio</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v2Dominio}}</td></tr>
+    <tr><td style="border: 1px solid #000; padding: 4px 8px; width: 30%;"><strong>Placa</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v2Placa}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Marca / Modelo</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v2Marca}} {{v2Modelo}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Tipo / Año / Color</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v2Tipo}} — {{v2Anio}} — {{v2Color}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Conductor</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v2Conductor}} (DNI {{v2ConductorDni}})</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Licencia</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">Clase {{v2LicenciaClase}} — N° {{v2LicenciaNro}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Propietario</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v2Propietario}}</td></tr>
-    <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Seguro</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v2Seguro}} — Póliza N° {{v2Poliza}}</td></tr>
+    <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>SOAT</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{v2Soat}} — Póliza N° {{v2Poliza}}</td></tr>
   </table>
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Personas y Lesiones</h2>
@@ -205,14 +205,14 @@ const parteAccidente = {
   <p><strong>Testigo 2:</strong> {{testigo2}} — DNI {{testigo2Dni}} — {{testigo2Domicilio}}</p>
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Autoridad Actuante</h2>
-  <p><strong>Oficial:</strong> {{oficialNombre}}</p>
-  <p><strong>Placa / Legajo:</strong> {{oficialPlaca}}</p>
-  <p><strong>Unidad / Dependencia:</strong> {{oficialUnidad}}</p>
+  <p><strong>Efectivo PNP:</strong> {{oficialNombre}}</p>
+  <p><strong>Placa / CIP:</strong> {{oficialPlaca}}</p>
+  <p><strong>Unidad / Comisaría:</strong> {{oficialUnidad}}</p>
 
   <div style="margin-top: 32px; text-align: center;">
     <p>_________________________________</p>
     <p>{{firma}}</p>
-    <p style="font-size: 10pt; margin-top: 4px;">Firma del Oficial Actuante</p>
+    <p style="font-size: 10pt; margin-top: 4px;">Firma del Efectivo Actuante</p>
   </div>
 </div>
   `

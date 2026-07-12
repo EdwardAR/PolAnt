@@ -1,6 +1,6 @@
 const actaInfraccion = {
   id: 'acta-infraccion',
-  title: 'Acta de Infracción',
+  title: 'Acta de Infracción de Tránsito',
   sections: [
     {
       title: 'Fecha y Hora',
@@ -15,20 +15,20 @@ const actaInfraccion = {
       title: 'Lugar de la Infracción',
       icon: 'pin',
       fields: [
-        { name: 'calle', label: 'Calle / Ruta', type: 'text', required: true },
+        { name: 'calle', label: 'Calle / Carretera', type: 'text', required: true },
         { name: 'altura', label: 'Altura / Km', type: 'text' },
-        { name: 'localidad', label: 'Localidad', type: 'text', required: true, autocomplete: 'address-level2' },
-        { name: 'partido', label: 'Partido', type: 'text', autocomplete: 'address-level1' }
+        { name: 'distrito', label: 'Distrito', type: 'text', required: true },
+        { name: 'provincia', label: 'Provincia', type: 'text', required: true }
       ]
     },
     {
       title: 'Datos del Infractor',
       icon: 'user',
       fields: [
-        { name: 'infractorNombre', label: 'Apellido y Nombre', type: 'text', required: true, autocomplete: 'name' },
+        { name: 'infractorNombre', label: 'Apellidos y Nombres', type: 'text', required: true, autocomplete: 'name' },
         { name: 'infractorDni', label: 'DNI', type: 'text', required: true },
         { name: 'infractorDomicilio', label: 'Domicilio', type: 'text', required: true, autocomplete: 'street-address' },
-        { name: 'infractorTelefono', label: 'Teléfono', type: 'text', autocomplete: 'tel' }
+        { name: 'infractorTelefono', label: 'Teléfono / Celular', type: 'text', autocomplete: 'tel' }
       ]
     },
     {
@@ -46,7 +46,7 @@ const actaInfraccion = {
       title: 'Vehículo',
       icon: 'carFront',
       fields: [
-        { name: 'vehiculoDominio', label: 'Dominio (Patente)', type: 'text', required: true },
+        { name: 'vehiculoPlaca', label: 'Placa (N° de placa)', type: 'text', required: true },
         { name: 'vehiculoTipo', label: 'Tipo', type: 'select', required: true,
           options: ['Automóvil', 'Camioneta', 'Camión', 'Motocicleta', 'Bicicleta', 'Colectivo', 'Acoplado', 'Maquinaria agrícola', 'Otro'] },
         { name: 'vehiculoMarca', label: 'Marca', type: 'text' },
@@ -62,7 +62,7 @@ const actaInfraccion = {
         { name: 'descripcionInfraccion', label: 'Descripción de la infracción', type: 'textarea', rows: 5, required: true,
           placeholder: 'Descripción detallada de la conducta infraccionaria' },
         { name: 'tipoInfraccion', label: 'Tipo de infracción', type: 'select',
-          options: ['Estacionamiento indebido', 'Exceso de velocidad', 'Conducir sin licencia', 'Conducir bajo efectos del alcohol', 'Cruce semáforo en rojo', 'Documentación incompleta', 'Falta de seguro', 'Falta de VTV / RTO', 'Uso de celular al conducir', 'No uso de cinturón de seguridad', 'No uso de casco', 'Otra'] },
+          options: ['Estacionamiento indebido', 'Exceso de velocidad', 'Conducir sin licencia', 'Conducir bajo efectos del alcohol', 'Cruce semáforo en rojo', 'Documentación incompleta', 'Falta de SOAT', 'Falta de Revisión Técnica', 'Uso de celular al conducir', 'No uso de cinturón de seguridad', 'No uso de casco', 'Otra'] },
         { name: 'medidaPreventiva', label: 'Medida preventiva adoptada', type: 'select',
           options: ['Ninguna', 'Secuestro del vehículo', 'Retención de licencia', 'Secuestro de documentación'] }
       ]
@@ -90,10 +90,10 @@ const actaInfraccion = {
       title: 'Autoridad Actuante',
       icon: 'shield',
       fields: [
-        { name: 'inspectorNombre', label: 'Apellido y Nombre del Inspector', type: 'text', required: true },
-        { name: 'inspectorPlaca', label: 'N° de Placa / Legajo', type: 'text', required: true },
-        { name: 'inspectorUnidad', label: 'Unidad / Dependencia', type: 'text', required: true },
-        { name: 'inspectorFirma', label: 'Firma digital / Rúbrica', type: 'text',
+        { name: 'inspectorNombre', label: 'Apellidos y Nombres del Efectivo PNP', type: 'text', required: true },
+        { name: 'inspectorPlaca', label: 'N° de Placa / CIP', type: 'text', required: true },
+        { name: 'inspectorUnidad', label: 'Unidad / Comisaría / División', type: 'text', required: true },
+        { name: 'inspectorFirma', label: 'Firma / Rúbrica', type: 'text',
           placeholder: 'Nombre completo y cargo' }
       ]
     }
@@ -113,11 +113,11 @@ const actaInfraccion = {
   </table>
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Lugar de la Infracción</h2>
-  <p><strong>Calle/Ruta:</strong> {{calle}} {{altura}}</p>
-  <p><strong>Localidad:</strong> {{localidad}} — <strong>Partido:</strong> {{partido}}</p>
+  <p><strong>Calle/Carretera:</strong> {{calle}} {{altura}}</p>
+  <p><strong>Distrito:</strong> {{distrito}} — <strong>Provincia:</strong> {{provincia}}</p>
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Datos del Infractor</h2>
-  <p><strong>Apellido y Nombre:</strong> {{infractorNombre}}</p>
+  <p><strong>Apellidos y Nombres:</strong> {{infractorNombre}}</p>
   <p><strong>DNI:</strong> {{infractorDni}} — <strong>Teléfono:</strong> {{infractorTelefono}}</p>
   <p><strong>Domicilio:</strong> {{infractorDomicilio}}</p>
 
@@ -127,7 +127,7 @@ const actaInfraccion = {
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Vehículo Involucrado</h2>
   <table style="width: 100%; border-collapse: collapse; border: 1px solid #000; margin-bottom: 12px;">
-    <tr><td style="border: 1px solid #000; padding: 4px 8px; width: 30%;"><strong>Dominio</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{vehiculoDominio}}</td></tr>
+    <tr><td style="border: 1px solid #000; padding: 4px 8px; width: 30%;"><strong>Placa</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{vehiculoPlaca}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Tipo</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{vehiculoTipo}}</td></tr>
     <tr><td style="border: 1px solid #000; padding: 4px 8px;"><strong>Marca / Modelo</strong></td><td style="border: 1px solid #000; padding: 4px 8px;">{{vehiculoMarca}} {{vehiculoModelo}} ({{vehiculoAnio}})</td></tr>
   </table>
@@ -143,14 +143,14 @@ const actaInfraccion = {
   <p><strong>¿Firmó el infractor?</strong> {{firmaInfractor}}</p>
 
   <h2 style="font-size: 13pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; border-bottom: 1px solid #999; padding-bottom: 4px;">Autoridad Actuante</h2>
-  <p><strong>Inspector:</strong> {{inspectorNombre}}</p>
-  <p><strong>Placa / Legajo:</strong> {{inspectorPlaca}}</p>
-  <p><strong>Unidad / Dependencia:</strong> {{inspectorUnidad}}</p>
+  <p><strong>Efectivo PNP:</strong> {{inspectorNombre}}</p>
+  <p><strong>Placa / CIP:</strong> {{inspectorPlaca}}</p>
+  <p><strong>Unidad / Comisaría:</strong> {{inspectorUnidad}}</p>
 
   <div style="margin-top: 32px; text-align: center;">
     <p>_________________________________</p>
     <p>{{inspectorFirma}}</p>
-    <p style="font-size: 10pt; margin-top: 4px;">Firma del Inspector Actuante</p>
+    <p style="font-size: 10pt; margin-top: 4px;">Firma del Efectivo Actuante</p>
   </div>
 </div>
   `
