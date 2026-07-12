@@ -6,6 +6,13 @@
   @page {
     margin: 20mm 25mm;
     size: A4;
+
+    @bottom-center {
+      content: "Página " counter(page) " de " counter(pages);
+      font-size: 9pt;
+      color: #666;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
   }
 
   body {

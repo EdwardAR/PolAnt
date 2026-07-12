@@ -3,7 +3,7 @@ export const parteAccidente = {
   title: 'Parte de Accidente',
   sections: [
     {
-      title: 'Numeración y Fecha',
+       icon: 'calendar',
       fields: [
         { name: 'nroParte', label: 'N° de Parte', type: 'text', required: true },
         { name: 'fecha', label: 'Fecha', type: 'date', required: true },
@@ -11,18 +11,18 @@ export const parteAccidente = {
       ]
     },
     {
-      title: 'Lugar del Hecho',
+       icon: 'pin',
       fields: [
         { name: 'calle', label: 'Calle / Ruta', type: 'text', required: true },
         { name: 'altura', label: 'Altura / Km', type: 'text' },
         { name: 'entreCalle1', label: 'Entre calle', type: 'text' },
         { name: 'entreCalle2', label: 'Y calle', type: 'text' },
-        { name: 'localidad', label: 'Localidad', type: 'text', required: true },
-        { name: 'partido', label: 'Partido / Departamento', type: 'text' }
+        { name: 'localidad', label: 'Localidad', type: 'text', required: true, autocomplete: 'address-level2' },
+        { name: 'partido', label: 'Partido / Departamento', type: 'text', autocomplete: 'address-level1' }
       ]
     },
     {
-      title: 'Clasificación',
+       icon: 'tag',
       fields: [
         {
           name: 'tipoAccidente', label: 'Tipo de Accidente', type: 'select', required: true,
@@ -43,7 +43,7 @@ export const parteAccidente = {
       ]
     },
     {
-      title: 'Vehículo 1',
+       icon: 'carFront',
       fields: [
         { name: 'v1Dominio', label: 'Dominio (Patente)', type: 'text', required: true },
         { name: 'v1Marca', label: 'Marca', type: 'text', required: true },
@@ -52,7 +52,7 @@ export const parteAccidente = {
           options: ['Automóvil', 'Camioneta', 'Camión', 'Motocicleta', 'Bicicleta', 'Colectivo', 'Acoplado', 'Maquinaria agrícola', 'Otro'] },
         { name: 'v1Anio', label: 'Año', type: 'text' },
         { name: 'v1Color', label: 'Color', type: 'text' },
-        { name: 'v1Conductor', label: 'Conductor (Apellido y Nombre)', type: 'text', required: true },
+        { name: 'v1Conductor', label: 'Conductor (Apellido y Nombre)', type: 'text', required: true, autocomplete: 'name' },
         { name: 'v1ConductorDni', label: 'DNI del Conductor', type: 'text' },
         { name: 'v1LicenciaClase', label: 'Clase de Licencia', type: 'text' },
         { name: 'v1LicenciaNro', label: 'N° de Licencia', type: 'text' },
@@ -62,7 +62,7 @@ export const parteAccidente = {
       ]
     },
     {
-      title: 'Vehículo 2',
+       icon: 'carFront',
       fields: [
         { name: 'v2Dominio', label: 'Dominio (Patente)', type: 'text' },
         { name: 'v2Marca', label: 'Marca', type: 'text' },
@@ -71,7 +71,7 @@ export const parteAccidente = {
           options: ['Automóvil', 'Camioneta', 'Camión', 'Motocicleta', 'Bicicleta', 'Colectivo', 'Acoplado', 'Maquinaria agrícola', 'Otro'] },
         { name: 'v2Anio', label: 'Año', type: 'text' },
         { name: 'v2Color', label: 'Color', type: 'text' },
-        { name: 'v2Conductor', label: 'Conductor (Apellido y Nombre)', type: 'text' },
+        { name: 'v2Conductor', label: 'Conductor (Apellido y Nombre)', type: 'text', autocomplete: 'name' },
         { name: 'v2ConductorDni', label: 'DNI del Conductor', type: 'text' },
         { name: 'v2LicenciaClase', label: 'Clase de Licencia', type: 'text' },
         { name: 'v2LicenciaNro', label: 'N° de Licencia', type: 'text' },
@@ -81,7 +81,7 @@ export const parteAccidente = {
       ]
     },
     {
-      title: 'Personas y Lesiones',
+       icon: 'user',
       fields: [
         { name: 'hayLesionados', label: '¿Hubo lesionados?', type: 'select', required: true,
           options: [
@@ -89,14 +89,14 @@ export const parteAccidente = {
             { value: 'si', label: 'Sí' }
           ]
         },
-        { name: 'cantidadLesionados', label: 'Cantidad de lesionados', type: 'text' },
-        { name: 'lesionesGraves', label: 'Lesiones graves', type: 'text', placeholder: 'Describir lesiones graves si las hubo' },
-        { name: 'fallecidos', label: 'Fallecidos', type: 'text' },
-        { name: 'derivadosA', label: 'Derivados a', type: 'text', placeholder: 'Hospital / Centro de salud' }
+        { name: 'cantidadLesionados', label: 'Cantidad de lesionados', type: 'text', visibleWhen: { field: 'hayLesionados', value: 'si' } },
+        { name: 'lesionesGraves', label: 'Lesiones graves', type: 'text', placeholder: 'Describir lesiones graves si las hubo', visibleWhen: { field: 'hayLesionados', value: 'si' } },
+        { name: 'fallecidos', label: 'Fallecidos', type: 'text', visibleWhen: { field: 'hayLesionados', value: 'si' } },
+        { name: 'derivadosA', label: 'Derivados a', type: 'text', placeholder: 'Hospital / Centro de salud', visibleWhen: { field: 'hayLesionados', value: 'si' } }
       ]
     },
     {
-      title: 'Croquis y Narración',
+       icon: 'file',
       fields: [
         { name: 'croquis', label: 'Croquis / Esquema', type: 'textarea', rows: 6,
           placeholder: 'Describa la posición de los vehículos, sentido de circulación, señalización, etc.' },
@@ -109,18 +109,18 @@ export const parteAccidente = {
       ]
     },
     {
-      title: 'Testigos',
+       icon: 'users',
       fields: [
         { name: 'testigo1', label: 'Testigo 1 (Apellido y Nombre)', type: 'text' },
         { name: 'testigo1Dni', label: 'DNI Testigo 1', type: 'text' },
-        { name: 'testigo1Domicilio', label: 'Domicilio Testigo 1', type: 'text' },
+        { name: 'testigo1Domicilio', label: 'Domicilio Testigo 1', type: 'text', autocomplete: 'street-address' },
         { name: 'testigo2', label: 'Testigo 2 (Apellido y Nombre)', type: 'text' },
         { name: 'testigo2Dni', label: 'DNI Testigo 2', type: 'text' },
-        { name: 'testigo2Domicilio', label: 'Domicilio Testigo 2', type: 'text' }
+        { name: 'testigo2Domicilio', label: 'Domicilio Testigo 2', type: 'text', autocomplete: 'street-address' }
       ]
     },
     {
-      title: 'Autoridad Actuante',
+       icon: 'shield',
       fields: [
         { name: 'oficialNombre', label: 'Apellido y Nombre del Oficial', type: 'text', required: true },
         { name: 'oficialPlaca', label: 'N° de Placa / Legajo', type: 'text', required: true },

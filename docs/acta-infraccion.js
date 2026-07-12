@@ -3,7 +3,7 @@ export const actaInfraccion = {
   title: 'Acta de Infracción',
   sections: [
     {
-      title: 'Numeración y Fecha',
+       icon: 'calendar',
       fields: [
         { name: 'nroActa', label: 'N° de Acta', type: 'text', required: true },
         { name: 'fecha', label: 'Fecha', type: 'date', required: true },
@@ -11,25 +11,25 @@ export const actaInfraccion = {
       ]
     },
     {
-      title: 'Lugar de la Infracción',
+       icon: 'pin',
       fields: [
         { name: 'calle', label: 'Calle / Ruta', type: 'text', required: true },
         { name: 'altura', label: 'Altura / Km', type: 'text' },
-        { name: 'localidad', label: 'Localidad', type: 'text', required: true },
-        { name: 'partido', label: 'Partido', type: 'text' }
+        { name: 'localidad', label: 'Localidad', type: 'text', required: true, autocomplete: 'address-level2' },
+        { name: 'partido', label: 'Partido', type: 'text', autocomplete: 'address-level1' }
       ]
     },
     {
-      title: 'Datos del Infractor',
+       icon: 'user',
       fields: [
-        { name: 'infractorNombre', label: 'Apellido y Nombre', type: 'text', required: true },
+        { name: 'infractorNombre', label: 'Apellido y Nombre', type: 'text', required: true, autocomplete: 'name' },
         { name: 'infractorDni', label: 'DNI', type: 'text', required: true },
-        { name: 'infractorDomicilio', label: 'Domicilio', type: 'text', required: true },
-        { name: 'infractorTelefono', label: 'Teléfono', type: 'text' }
+        { name: 'infractorDomicilio', label: 'Domicilio', type: 'text', required: true, autocomplete: 'street-address' },
+        { name: 'infractorTelefono', label: 'Teléfono', type: 'text', autocomplete: 'tel' }
       ]
     },
     {
-      title: 'Licencia de Conducir',
+       icon: 'creditCard',
       fields: [
         { name: 'licenciaClase', label: 'Clase', type: 'text' },
         { name: 'licenciaNro', label: 'N° de Licencia', type: 'text' },
@@ -39,7 +39,7 @@ export const actaInfraccion = {
       ]
     },
     {
-      title: 'Vehículo Involucrado',
+       icon: 'carFront',
       fields: [
         { name: 'vehiculoDominio', label: 'Dominio (Patente)', type: 'text', required: true },
         { name: 'vehiculoTipo', label: 'Tipo', type: 'select', required: true,
@@ -50,7 +50,7 @@ export const actaInfraccion = {
       ]
     },
     {
-      title: 'Infracción',
+       icon: 'alertTriangle',
       fields: [
         { name: 'articulos', label: 'Artículo/s infringido/s', type: 'normativa' },
         { name: 'descripcionInfraccion', label: 'Descripción de la infracción', type: 'textarea', rows: 5, required: true,
@@ -62,7 +62,7 @@ export const actaInfraccion = {
       ]
     },
     {
-      title: 'Notificaciones',
+       icon: 'bell',
       fields: [
         { name: 'notificadoEn', label: 'Notificado en el acto', type: 'select', required: true,
           options: [
@@ -74,12 +74,13 @@ export const actaInfraccion = {
           options: [
             { value: 'si', label: 'Sí' },
             { value: 'no', label: 'No' }
-          ]
+          ],
+          visibleWhen: { field: 'notificadoEn', value: 'si' }
         }
       ]
     },
     {
-      title: 'Autoridad Actuante',
+       icon: 'shield',
       fields: [
         { name: 'inspectorNombre', label: 'Apellido y Nombre del Inspector', type: 'text', required: true },
         { name: 'inspectorPlaca', label: 'N° de Placa / Legajo', type: 'text', required: true },

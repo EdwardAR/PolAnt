@@ -1,4 +1,5 @@
 import { normativa } from '../docs/normativa.js';
+import { icons } from './icons.js';
 
 export class FormEngine {
   renderForm(sections) {
@@ -10,7 +11,18 @@ export class FormEngine {
       if (section.title) {
         const h3 = document.createElement('h3');
         h3.className = 'section-title';
-        h3.textContent = section.title;
+
+        if (section.icon && icons[section.icon]) {
+          const iconSpan = document.createElement('span');
+          iconSpan.className = 'section-icon';
+          iconSpan.innerHTML = icons[section.icon];
+          h3.appendChild(iconSpan);
+        }
+
+        const textSpan = document.createElement('span');
+        textSpan.textContent = section.title;
+        h3.appendChild(textSpan);
+
         sectionEl.appendChild(h3);
       }
 
@@ -24,6 +36,7 @@ export class FormEngine {
       sectionEl.appendChild(fieldsGrid);
       container.appendChild(sectionEl);
     }
+    this._setupConditionalFields(container);
     return container;
   }
 
@@ -35,6 +48,12 @@ export class FormEngine {
     const group = document.createElement('div');
     group.className = 'form-group';
     group.dataset.fieldName = field.name;
+
+    if (field.visibleWhen) {
+      group.classList.add('hidden-conditional');
+      group.dataset.dependsOn = field.visibleWhen.field;
+      group.dataset.dependsValue = field.visibleWhen.value;
+    }
 
     const label = document.createElement('label');
     label.setAttribute('for', `field-${field.name}`);
@@ -80,6 +99,10 @@ export class FormEngine {
       }
     }
 
+    if (field.autocomplete) {
+      input.autocomplete = field.autocomplete;
+    }
+
     group.appendChild(input);
     return group;
   }
@@ -88,6 +111,12 @@ export class FormEngine {
     const group = document.createElement('div');
     group.className = 'form-group form-group-normativa';
     group.dataset.fieldName = field.name;
+
+    if (field.visibleWhen) {
+      group.classList.add('hidden-conditional');
+      group.dataset.dependsOn = field.visibleWhen.field;
+      group.dataset.dependsValue = field.visibleWhen.value;
+    }
 
     const label = document.createElement('label');
     label.textContent = field.label;
@@ -145,12 +174,55 @@ export class FormEngine {
     return group;
   }
 
+  _setupConditionalFields(container) {
+    const conditionals = container.querySelectorAll('.hidden-conditional');
+    if (!conditionals.length) return;
+
+    const triggerNames = new Set();
+    for (const el of conditionals) {
+      triggerNames.add(el.dataset.dependsOn);
+    }
+
+    for (const triggerName of triggerNames) {
+      const trigger = container.querySelector(`[data-field-name="${triggerName}"]`);
+      if (!trigger) continue;
+
+      const targets = container.querySelectorAll(`[data-depends-on="${triggerName}"]`);
+
+      const updateVisibility = () => {
+        const val = trigger.tagName === 'SELECT' ? trigger.value : trigger.value.trim();
+        for (const t of targets) {
+          if (val === t.dataset.dependsValue) {
+            t.classList.remove('hidden-conditional');
+          } else {
+            t.classList.add('hidden-conditional');
+            const inp = t.querySelector('input, select, textarea');
+            if (inp) {
+              if (inp.tagName === 'SELECT') inp.selectedIndex = 0;
+              else inp.value = '';
+            }
+            const cbs = t.querySelectorAll('input[type="checkbox"]');
+            for (const cb of cbs) cb.checked = false;
+          }
+        }
+      };
+
+      trigger.addEventListener('change', updateVisibility);
+      updateVisibility();
+    }
+  }
+
   getFormValues(formEl) {
     const data = {};
     const groups = formEl.querySelectorAll('.form-group');
     for (const group of groups) {
       const name = group.dataset.fieldName;
       if (!name) continue;
+
+      if (group.classList.contains('hidden-conditional')) {
+        data[name] = '';
+        continue;
+      }
 
       if (group.classList.contains('form-group-normativa')) {
         const checked = [];
@@ -188,10 +260,10 @@ export class FormEngine {
     let firstInvalid = null;
     for (const el of required) {
       if (!el.checkValidity()) {
-        el.style.borderColor = '#c0392b';
+        el.classList.add('field-invalid');
         if (!firstInvalid) firstInvalid = el;
       } else {
-        el.style.borderColor = '';
+        el.classList.remove('field-invalid');
       }
     }
     if (firstInvalid) {

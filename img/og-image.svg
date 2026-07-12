@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#1a3a5c"/>
+  <path d="M600 140 L720 185 L720 295 C720 405 660 470 600 490 C540 470 480 405 480 295 L480 185 Z" fill="none" stroke="#c9a84c" stroke-width="6"/>
+  <path d="M600 140 L720 185 L720 295 C720 405 660 470 600 490 C540 470 480 405 480 295 L480 185 Z" fill="#2a5a8c"/>
+  <text x="600" y="350" font-family="Arial,sans-serif" font-size="130" font-weight="bold" fill="white" text-anchor="middle">P</text>
+  <text x="600" y="380" font-family="Arial,sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle" opacity="0.9">POLANT</text>
+  <text x="600" y="510" font-family="Arial,sans-serif" font-size="44" font-weight="bold" fill="#c9a84c" text-anchor="middle">Generador de Documentos de Tránsito</text>
+  <text x="600" y="560" font-family="Arial,sans-serif" font-size="28" fill="#c8d0d8" text-anchor="middle">Policía — Área Tránsito</text>
+</svg>

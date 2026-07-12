@@ -20,9 +20,12 @@
   --font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
   --header-height: 60px;
   --sidebar-width: 260px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
   --radius: 8px;
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-hover: 0 4px 12px rgba(0,0,0,0.1);
+  --radius-lg: 12px;
+  --shadow-card: 0 2px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.02);
+  --shadow-hover: 0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
 }
 
 *, *::before, *::after {
@@ -71,7 +74,7 @@ html, body {
   width: 40px;
   height: 40px;
   object-fit: contain;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
 #app-header h1 {
@@ -90,7 +93,7 @@ html, body {
   font-size: 14px;
   background: rgba(255,255,255,0.12);
   padding: 6px 14px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-weight: 500;
 }
 
@@ -105,7 +108,7 @@ html, body {
   align-items: center;
   gap: 8px;
   padding: 8px 18px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   text-decoration: none;
   font-size: 15px;
   font-weight: 700;
@@ -188,7 +191,7 @@ html, body {
   text-align: left;
   background: none;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius);
   color: var(--color-sidebar-text);
   font-size: 16px;
   font-weight: 500;
@@ -207,6 +210,25 @@ html, body {
   background: var(--color-sidebar-active);
   color: #fff;
   font-weight: 600;
+}
+
+.prompt-cat-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: 6px;
+  color: inherit;
+  opacity: 0.6;
+}
+
+.prompt-cat-icon svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.prompt-btn {
+  display: flex;
+  align-items: center;
 }
 
 /* ---- Main content ---- */
@@ -238,6 +260,10 @@ html, body {
   display: none !important;
 }
 
+.hidden-conditional {
+  display: none !important;
+}
+
 /* ---- Form ---- */
 #form-view {
   max-width: 860px;
@@ -259,7 +285,7 @@ html, body {
 /* ---- Form Section Cards ---- */
 .form-section-card {
   background: var(--color-surface);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   padding: 24px 28px;
   margin-bottom: 20px;
   box-shadow: var(--shadow-card);
@@ -275,6 +301,19 @@ html, body {
   border-left: 3px solid var(--color-primary);
   text-transform: uppercase;
   letter-spacing: 0.4px;
+}
+
+.section-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: 8px;
+  color: var(--color-primary-light);
+}
+
+.section-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .fields-grid {
@@ -340,16 +379,14 @@ textarea:invalid:not(:placeholder-shown) ~ .form-error {
   display: block;
 }
 
-input:invalid,
-select:invalid,
-textarea:invalid {
-  border-color: #c0392b;
+.field-invalid {
+  border-color: var(--color-accent) !important;
 }
 
 /* ---- Normativa Field ---- */
 .form-group-normativa {
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   padding: 16px 18px;
   background: #fafbfc;
 }
@@ -390,7 +427,7 @@ textarea:invalid {
   align-items: flex-start;
   gap: 8px;
   padding: 5px 8px 5px 12px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
   cursor: pointer;
   font-size: 15px;
   line-height: 1.5;
@@ -495,7 +532,7 @@ textarea:invalid {
 #preview-content {
   background: var(--color-surface);
   padding: 44px 48px;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   max-width: 210mm;
   margin: 0 auto;
@@ -554,7 +591,7 @@ textarea:invalid {
 .prompt-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   padding: 20px 22px;
   box-shadow: var(--shadow-card);
   transition: box-shadow 0.15s, transform 0.1s;
@@ -614,7 +651,7 @@ textarea:invalid {
 .prompt-detail-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   padding: 32px 36px;
   box-shadow: var(--shadow-card);
 }
@@ -646,7 +683,7 @@ textarea:invalid {
 .prompt-detail-text {
   background: #f6f8fa;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: 20px 24px;
   font-family: "Consolas", "Courier New", monospace;
   font-size: 14px;
@@ -696,6 +733,96 @@ textarea:invalid {
 
 .copy-feedback.visible {
   display: inline;
+}
+
+/* ---- Progress Bar ---- */
+#form-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-top: 8px;
+}
+
+#form-progress.hidden {
+  display: none;
+}
+
+.progress-track {
+  flex: 1;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-primary-light);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+/* ---- Watermark ---- */
+.preview-wrap {
+  position: relative;
+}
+
+#preview-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 72pt;
+  font-weight: 900;
+  color: var(--color-accent);
+  opacity: 0.06;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+  letter-spacing: 12px;
+}
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #1c1c1c;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.hidden {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.toast:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Transiciones entre vistas ---- */
+#form-view,
+#preview-view,
+#prompts-view {
+  transition: opacity 0.2s ease;
+}
+
+#form-view.hidden,
+#preview-view.hidden,
+#prompts-view.hidden {
+  opacity: 0;
 }
 
 /* ---- Responsive ---- */
@@ -814,7 +941,7 @@ textarea:invalid {
 
   .form-section-card {
     padding: 14px 16px;
-    border-radius: 8px;
+    border-radius: var(--radius);
   }
 
   #form-title {
@@ -844,6 +971,201 @@ textarea:invalid {
 
   #prompts-title {
     font-size: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  #app-header {
+    height: auto;
+    min-height: 48px;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  #app-header h1 {
+    font-size: 14px;
+    white-space: normal;
+    line-height: 1.3;
+  }
+
+  .header-left {
+    gap: 8px;
+  }
+
+  .header-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .header-right .ai-btn {
+    padding: 5px 8px;
+  }
+
+  .header-right .ai-btn img {
+    width: 16px;
+    height: 16px;
+  }
+
+  #app-body {
+    flex-direction: column;
+  }
+
+  /* Sidebar: compact horizontal bars */
+  #sidebar {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .sidebar-section + .sidebar-section {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  #sidebar h2 {
+    display: none;
+  }
+
+  #doc-list,
+  #prompt-list {
+    display: flex;
+    gap: 4px;
+    padding: 6px 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #doc-list li,
+  #prompt-list li {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .doc-btn,
+  .prompt-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Prompt cards: single column */
+  .prompt-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .prompt-card {
+    padding: 16px;
+  }
+
+  .prompt-card-actions .btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* Prompt detail */
+  .prompt-detail-card {
+    padding: 20px 18px;
+  }
+
+  .prompt-detail-title {
+    font-size: 18px;
+  }
+
+  .prompt-detail-text {
+    padding: 14px;
+    font-size: 13px;
+    max-height: 60vh;
+  }
+
+  #prompts-title {
+    font-size: 20px;
+  }
+
+  .btn-copy {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .prompt-detail-actions {
+    flex-direction: column;
+  }
+
+  /* General */
+  #form-view {
+    max-width: 100%;
+  }
+
+  .fields-grid {
+    gap: 12px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+
+  #form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #form-actions .btn {
+    width: 100%;
+  }
+
+  #preview-toolbar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #preview-toolbar .btn {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .form-group-normativa {
+    padding: 12px 14px;
+  }
+
+  .normativa-item {
+    padding: 6px 6px 6px 10px;
+    font-size: 14px;
+  }
+
+  #prompts-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+
+  #prompts-subtitle {
+    font-size: 14px;
+  }
+
+  .prompt-category-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  /* Welcome */
+  #welcome h2 {
+    font-size: 22px;
+  }
+
+  .welcome-ai-info {
+    font-size: 14px;
+    max-width: 100%;
   }
 }
 
@@ -890,7 +1212,7 @@ textarea:invalid {
   .prompt-btn {
     padding: 8px 12px;
     font-size: 13px;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
   }
 
   #main-content {
@@ -1035,200 +1357,5 @@ textarea:invalid {
 
   .copy-feedback {
     font-size: 12px;
-  }
-}
-
-@media (max-width: 640px) {
-  #app-header {
-    height: auto;
-    min-height: 48px;
-    padding: 8px 12px;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  #app-header h1 {
-    font-size: 14px;
-    white-space: normal;
-    line-height: 1.3;
-  }
-
-  .header-left {
-    gap: 8px;
-  }
-
-  .header-logo {
-    width: 28px;
-    height: 28px;
-  }
-
-  .header-right .ai-btn {
-    padding: 5px 8px;
-  }
-
-  .header-right .ai-btn img {
-    width: 16px;
-    height: 16px;
-  }
-
-  #app-body {
-    flex-direction: column;
-  }
-
-  /* Sidebar: compact horizontal bars */
-  #sidebar {
-    width: 100%;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-
-  .sidebar-section + .sidebar-section {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    margin-top: 0;
-    padding-top: 0;
-  }
-
-  #sidebar h2 {
-    display: none;
-  }
-
-  #doc-list,
-  #prompt-list {
-    display: flex;
-    gap: 4px;
-    padding: 6px 10px;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  #doc-list li,
-  #prompt-list li {
-    margin-bottom: 0;
-    flex-shrink: 0;
-  }
-
-  .doc-btn,
-  .prompt-btn {
-    padding: 10px 16px;
-    font-size: 14px;
-    border-radius: 6px;
-  }
-
-  /* Prompt cards: single column */
-  .prompt-cards {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .prompt-card {
-    padding: 16px;
-  }
-
-  .prompt-card-actions .btn {
-    flex: 1;
-    text-align: center;
-  }
-
-  /* Prompt detail */
-  .prompt-detail-card {
-    padding: 20px 18px;
-  }
-
-  .prompt-detail-title {
-    font-size: 18px;
-  }
-
-  .prompt-detail-text {
-    padding: 14px;
-    font-size: 13px;
-    max-height: 60vh;
-  }
-
-  #prompts-title {
-    font-size: 20px;
-  }
-
-  .btn-copy {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .prompt-detail-actions {
-    flex-direction: column;
-  }
-
-  /* General */
-  #form-view {
-    max-width: 100%;
-  }
-
-  .fields-grid {
-    gap: 12px;
-  }
-
-  .form-group label {
-    font-size: 14px;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 10px 12px;
-    font-size: 15px;
-  }
-
-  #form-actions {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  #form-actions .btn {
-    width: 100%;
-  }
-
-  #preview-toolbar {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  #preview-toolbar .btn {
-    flex: 1;
-    min-width: 0;
-    text-align: center;
-    font-size: 14px;
-    padding: 10px 12px;
-  }
-
-  .form-group-normativa {
-    padding: 12px 14px;
-  }
-
-  .normativa-item {
-    padding: 6px 6px 6px 10px;
-    font-size: 14px;
-  }
-
-  #prompts-header {
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-  }
-
-  #prompts-subtitle {
-    font-size: 14px;
-  }
-
-  .prompt-category-title {
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-
-  /* Welcome */
-  #welcome h2 {
-    font-size: 22px;
-  }
-
-  .welcome-ai-info {
-    font-size: 14px;
-    max-width: 100%;
   }
 }

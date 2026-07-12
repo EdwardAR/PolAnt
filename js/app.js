@@ -3,6 +3,7 @@ import { TemplateEngine } from './template-engine.js';
 import { parteAccidente } from '../docs/parte-accidente.js';
 import { actaInfraccion } from '../docs/acta-infraccion.js';
 import { prompts } from '../docs/prompts.js';
+import { icons } from './icons.js';
 
 const docRegistry = {};
 let currentDocId = null;
@@ -61,6 +62,9 @@ function selectDocument(id) {
   document.querySelectorAll('.doc-btn').forEach(b => b.classList.remove('active'));
   const btn = docList.querySelector(`[data-doc-id="${id}"]`);
   if (btn) btn.classList.add('active');
+  initFormProgress(doc.sections.length);
+  const firstInput = docForm.querySelector('input, select, textarea');
+  if (firstInput) setTimeout(() => firstInput.focus(), 100);
 }
 
 function generateDocument() {
@@ -121,6 +125,56 @@ function downloadWord() {
   URL.revokeObjectURL(url);
 }
 
+// ─── Form Progress ────────────────────────────────────────────
+
+function initFormProgress(total) {
+  const el = document.getElementById('form-progress');
+  if (!el) return;
+  el.classList.remove('hidden');
+  el.querySelector('.progress-total').textContent = total;
+  el.querySelector('.progress-current').textContent = '1';
+  el.querySelector('.progress-fill').style.width = (1 / total * 100) + '%';
+  const main = document.getElementById('main-content');
+  if (!main) return;
+  const handler = () => {
+    const cards = docForm.querySelectorAll('.form-section-card');
+    let active = 1;
+    const scrollTop = main.scrollTop;
+    for (let i = 0; i < cards.length; i++) {
+      if (cards[i].offsetTop < scrollTop + 100) active = i + 1;
+    }
+    el.querySelector('.progress-current').textContent = Math.min(active, total);
+    el.querySelector('.progress-fill').style.width = (Math.min(active, total) / total * 100) + '%';
+  };
+  main.addEventListener('scroll', handler);
+}
+
+// ─── Toast ────────────────────────────────────────────────────
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.remove('hidden');
+  setTimeout(() => toast.classList.add('hidden'), 2500);
+}
+
+// ─── Keyboard Shortcuts ───────────────────────────────────────
+
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    if (!formView.classList.contains('hidden') && !welcome.classList.contains('hidden')) {
+      e.preventDefault();
+      generateDocument();
+    }
+  }
+  if (e.key === 'Escape') {
+    if (!previewView.classList.contains('hidden')) {
+      goBack();
+    }
+  }
+});
+
 document.getElementById('btn-generate').addEventListener('click', generateDocument);
 document.getElementById('btn-clear').addEventListener('click', () => {
   if (currentDocId) {
@@ -136,12 +190,27 @@ document.getElementById('btn-print').addEventListener('click', printDocument);
 
 function renderPromptSidebar() {
   promptList.innerHTML = '';
+  const catIconMap = {
+    'Redacción Jurídica': 'pen',
+    'Consulta Normativa': 'book',
+    'Procedimiento': 'checkSquare',
+    'Revisión y Corrección': 'search'
+  };
   const categories = [...new Set(prompts.map(p => p.category))];
   for (const cat of categories) {
     const header = document.createElement('li');
     const headerBtn = document.createElement('button');
     headerBtn.className = 'prompt-btn prompt-cat-header';
-    headerBtn.textContent = cat;
+    const iconId = catIconMap[cat];
+    if (iconId && icons[iconId]) {
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'prompt-cat-icon';
+      iconSpan.innerHTML = icons[iconId];
+      headerBtn.appendChild(iconSpan);
+    }
+    const textSpan = document.createElement('span');
+    textSpan.textContent = cat;
+    headerBtn.appendChild(textSpan);
     headerBtn.dataset.category = cat;
     headerBtn.addEventListener('click', () => showPromptsCategory(cat));
     header.appendChild(headerBtn);
@@ -170,7 +239,17 @@ function showPromptsCategory(category) {
 
     const title = document.createElement('h3');
     title.className = 'prompt-category-title';
-    title.textContent = cat;
+    const catIconMap = {'Redacción Jurídica':'pen','Consulta Normativa':'book','Procedimiento':'checkSquare','Revisión y Corrección':'search'};
+    const iconId = catIconMap[cat];
+    if (iconId && icons[iconId]) {
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'section-icon';
+      iconSpan.innerHTML = icons[iconId];
+      title.appendChild(iconSpan);
+    }
+    const catTextSpan = document.createElement('span');
+    catTextSpan.textContent = cat;
+    title.appendChild(catTextSpan);
     section.appendChild(title);
 
     const cards = document.createElement('div');
@@ -280,6 +359,7 @@ function copyPromptText(text, btn) {
   navigator.clipboard.writeText(text).then(() => {
     btn.textContent = 'Copiado';
     btn.classList.add('copied');
+    showToast('Prompt copiado al portapapeles');
     setTimeout(() => {
       btn.textContent = 'Copiar prompt';
       btn.classList.remove('copied');
@@ -295,6 +375,7 @@ function copyPromptText(text, btn) {
     document.body.removeChild(textarea);
     btn.textContent = 'Copiado';
     btn.classList.add('copied');
+    showToast('Prompt copiado al portapapeles');
     setTimeout(() => {
       btn.textContent = 'Copiar prompt';
       btn.classList.remove('copied');
