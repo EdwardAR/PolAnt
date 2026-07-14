@@ -1462,7 +1462,8 @@ textarea:invalid:not(:placeholder-shown) ~ .form-error {
   }
 
   #doc-list,
-  #prompt-list {
+  #prompt-list,
+  #drawing-list {
     display: flex;
     gap: 6px;
     padding: 8px 12px;
@@ -1472,7 +1473,8 @@ textarea:invalid:not(:placeholder-shown) ~ .form-error {
   }
 
   #doc-list li,
-  #prompt-list li {
+  #prompt-list li,
+  #drawing-list li {
     margin-bottom: 0;
     flex-shrink: 0;
   }
@@ -1692,7 +1694,8 @@ textarea:invalid:not(:placeholder-shown) ~ .form-error {
   }
 
   #doc-list,
-  #prompt-list {
+  #prompt-list,
+  #drawing-list {
     padding: 6px 10px;
     gap: 5px;
   }
