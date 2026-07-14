@@ -215,7 +215,12 @@ function renderPromptSidebar() {
   }
 }
 
+let lastPromptCategory = null;
+
 function showPromptsCategory(category) {
+  lastPromptCategory = category;
+  const noResults = document.getElementById('prompt-no-results');
+  if (noResults) noResults.classList.add('hidden');
   welcome.classList.add('hidden');
   formView.classList.add('hidden');
   previewView.classList.add('hidden');
@@ -407,28 +412,87 @@ mainContent.addEventListener('scroll', () => {
 // ─── Prompt Search ────────────────────────────────────────────
 
 const promptSearch = document.getElementById('prompt-search');
+const promptSearchClear = document.getElementById('prompt-search-clear');
+const promptNoResults = document.getElementById('prompt-no-results');
+const promptNoResultsDesc = document.getElementById('prompt-no-results-desc');
 let searchTimeout = null;
+
+function filterPromptCards(q, fromSearch) {
+  const categories = document.querySelectorAll('.prompt-category');
+  let totalVisible = 0;
+
+  for (const cat of categories) {
+    let hasVisible = false;
+    const cardsInCat = cat.querySelectorAll('.prompt-card');
+    for (const card of cardsInCat) {
+      const title = card.querySelector('.prompt-card-title')?.textContent?.toLowerCase() || '';
+      const desc = card.querySelector('.prompt-card-desc')?.textContent?.toLowerCase() || '';
+      const badge = card.querySelector('.prompt-card-badge')?.textContent?.toLowerCase() || '';
+      const promptId = card.dataset.promptId;
+      const promptObj = promptId ? prompts.find(p => p.id === promptId) : null;
+      const promptText = promptObj?.prompt?.toLowerCase() || '';
+      const match = !q || title.includes(q) || desc.includes(q) || badge.includes(q) || promptText.includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) hasVisible = true;
+    }
+    cat.style.display = hasVisible ? '' : 'none';
+    if (hasVisible) totalVisible++;
+  }
+
+  if (q && totalVisible === 0 && fromSearch) {
+    if (promptNoResults) {
+      if (promptNoResultsDesc) promptNoResultsDesc.textContent = `No se encontraron prompts para «${q}». Probá con otras palabras clave.`;
+      promptNoResults.classList.remove('hidden');
+    }
+  } else {
+    if (promptNoResults) promptNoResults.classList.add('hidden');
+  }
+
+  if (promptSearchClear) {
+    if (q) promptSearchClear.classList.remove('hidden');
+    else promptSearchClear.classList.add('hidden');
+  }
+}
 
 if (promptSearch) {
   promptSearch.addEventListener('input', () => {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
-      const q = promptSearch.value.trim().toLowerCase();
-      const categories = document.querySelectorAll('.prompt-category');
-      for (const cat of categories) {
-        let hasVisible = false;
-        const cardsInCat = cat.querySelectorAll('.prompt-card');
-        for (const card of cardsInCat) {
-          const title = card.querySelector('.prompt-card-title')?.textContent?.toLowerCase() || '';
-          const desc = card.querySelector('.prompt-card-desc')?.textContent?.toLowerCase() || '';
-          const badge = card.querySelector('.prompt-card-badge')?.textContent?.toLowerCase() || '';
-          const match = !q || title.includes(q) || desc.includes(q) || badge.includes(q);
-          card.style.display = match ? '' : 'none';
-          if (match) hasVisible = true;
+      const q = promptSearch.value.trim();
+      const activeCat = document.querySelector('.prompt-btn.prompt-cat-header.active');
+
+      if (q) {
+        if (activeCat) {
+          const catName = activeCat.dataset.category;
+          showPromptsCategory(null);
+          setTimeout(() => filterPromptCards(q, true), 50);
+        } else {
+          filterPromptCards(q, true);
         }
-        cat.style.display = hasVisible ? '' : 'none';
+      } else {
+        filterPromptCards('', false);
+        if (promptSearchClear) promptSearchClear.classList.add('hidden');
+        if (lastPromptCategory) {
+          showPromptsCategory(lastPromptCategory);
+        } else {
+          showPromptsCategory(null);
+        }
       }
-    }, 150);
+    }, 200);
+  });
+}
+
+if (promptSearchClear) {
+  promptSearchClear.addEventListener('click', () => {
+    promptSearch.value = '';
+    promptSearchClear.classList.add('hidden');
+    if (promptNoResults) promptNoResults.classList.add('hidden');
+    if (lastPromptCategory) {
+      showPromptsCategory(lastPromptCategory);
+    } else {
+      showPromptsCategory(null);
+    }
+    promptSearch.focus();
   });
 }
 

@@ -1534,7 +1534,7 @@ textarea:invalid:not(:placeholder-shown) ~ .form-error {
   margin-bottom: 24px;
 }
 
-.prompt-search-wrap svg {
+.prompt-search-wrap > svg {
   position: absolute;
   left: 14px;
   top: 50%;
@@ -1547,7 +1547,7 @@ textarea:invalid:not(:placeholder-shown) ~ .form-error {
 
 #prompt-search {
   width: 100%;
-  padding: 11px 14px 11px 42px;
+  padding: 11px 40px 11px 42px;
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius);
   font-family: var(--font-family);
@@ -1565,6 +1565,78 @@ textarea:invalid:not(:placeholder-shown) ~ .form-error {
 
 #prompt-search::placeholder {
   color: var(--color-text-muted);
+}
+
+#prompt-search-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  padding: 0;
+}
+
+#prompt-search-clear:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+#prompt-search-clear svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* ============================================
+   PROMPT NO RESULTS
+   ============================================ */
+#prompt-no-results {
+  text-align: center;
+  padding: 48px 20px;
+  animation: fadeIn 0.2s ease forwards;
+}
+
+.prompt-no-results-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  background: var(--color-primary-lighter);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-light);
+}
+
+.prompt-no-results-icon svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.prompt-no-results-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.prompt-no-results-desc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  max-width: 360px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 /* ============================================
