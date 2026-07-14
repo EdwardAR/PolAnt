@@ -177,6 +177,55 @@
   <script src="js/icons.js"></script>
   <script src="js/template-engine.js"></script>
   <script src="js/form-engine.js"></script>
+
+  <!-- Bottom Navigation — solo mobile -->
+  <nav id="bottom-nav" aria-label="Navegación principal">
+    <button class="bottom-nav-item active" data-section="docs" aria-label="Documentos">
+      <span class="bottom-nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </span>
+      <span class="bottom-nav-label">Documentos</span>
+    </button>
+    <button class="bottom-nav-item" data-section="prompts" aria-label="Prompts para IA">
+      <span class="bottom-nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </span>
+      <span class="bottom-nav-label">Prompts IA</span>
+    </button>
+    <button class="bottom-nav-item" data-section="drawing" aria-label="Dibujo">
+      <span class="bottom-nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17l4-4 3 3 2-2 2 2"/><circle cx="8" cy="9" r="1.5" fill="currentColor" stroke="none"/></svg>
+      </span>
+      <span class="bottom-nav-label">Dibujo</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Drawer — selector de documentos -->
+  <div id="mobile-drawer-overlay" class="hidden"></div>
+  <div id="mobile-drawer" class="hidden" aria-label="Seleccionar documento">
+    <div class="mobile-drawer-handle"></div>
+    <div class="mobile-drawer-header">
+      <span class="mobile-drawer-title">Documentos</span>
+      <button class="mobile-drawer-close" id="btn-drawer-close" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul id="mobile-doc-list" class="mobile-drawer-list"></ul>
+  </div>
+
+  <!-- Mobile Prompts Drawer -->
+  <div id="mobile-prompts-overlay" class="hidden"></div>
+  <div id="mobile-prompts-drawer" class="hidden" aria-label="Seleccionar categoría de prompts">
+    <div class="mobile-drawer-handle"></div>
+    <div class="mobile-drawer-header">
+      <span class="mobile-drawer-title">Prompts para IA</span>
+      <button class="mobile-drawer-close" id="btn-prompts-drawer-close" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul id="mobile-prompt-list" class="mobile-drawer-list"></ul>
+  </div>
+
   <script src="js/app.js"></script>
   <button id="scroll-top" aria-label="Volver al inicio" title="Volver al inicio">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>

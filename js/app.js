@@ -60,6 +60,7 @@ function selectDocument(id) {
   initFormProgress(doc.sections.length);
   const firstInput = docForm.querySelector('input, select, textarea');
   if (firstInput) setTimeout(() => firstInput.focus(), 100);
+  setBottomNavActive('docs');
 }
 
 function generateDocument() {
@@ -221,6 +222,7 @@ function showPromptsCategory(category) {
   promptsView.classList.remove('hidden');
   drawingView.classList.add('hidden');
   promptsDetail.classList.add('hidden');
+  setBottomNavActive('prompts');
   promptsCategories.classList.remove('hidden');
   document.querySelectorAll('.doc-btn, .prompt-btn').forEach(b => b.classList.remove('active'));
   if (category) {
@@ -444,9 +446,127 @@ function showDrawingView() {
   document.querySelectorAll('.doc-btn, .prompt-btn').forEach(b => b.classList.remove('active'));
   const btn = document.getElementById('btn-open-drawing');
   if (btn) btn.classList.add('active');
+  setBottomNavActive('drawing');
 }
 
 const btnOpenDrawing = document.getElementById('btn-open-drawing');
 if (btnOpenDrawing) {
   btnOpenDrawing.addEventListener('click', showDrawingView);
 }
+
+// ─── Bottom Navigation (mobile) ────────────────────────────────
+
+function isMobile() {
+  return window.innerWidth <= 640;
+}
+
+function setBottomNavActive(section) {
+  document.querySelectorAll('.bottom-nav-item').forEach(b => {
+    b.classList.toggle('active', b.dataset.section === section);
+  });
+}
+
+// Drawer: documentos
+const mobileDrawerOverlay = document.getElementById('mobile-drawer-overlay');
+const mobileDrawer = document.getElementById('mobile-drawer');
+const mobileDocList = document.getElementById('mobile-doc-list');
+const btnDrawerClose = document.getElementById('btn-drawer-close');
+
+function openDocDrawer() {
+  mobileDocList.innerHTML = '';
+  const ids = Object.keys(docRegistry);
+  ids.sort((a, b) => docRegistry[a].title.localeCompare(docRegistry[b].title));
+  for (const id of ids) {
+    const doc = docRegistry[id];
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.className = 'doc-btn' + (currentDocId === id ? ' active' : '');
+    btn.textContent = doc.title;
+    btn.dataset.docId = id;
+    btn.addEventListener('click', () => {
+      closeDocDrawer();
+      selectDocument(id);
+    });
+    li.appendChild(btn);
+    mobileDocList.appendChild(li);
+  }
+  mobileDrawer.classList.remove('hidden');
+  mobileDrawerOverlay.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDocDrawer() {
+  mobileDrawer.classList.add('hidden');
+  mobileDrawerOverlay.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+if (btnDrawerClose) btnDrawerClose.addEventListener('click', closeDocDrawer);
+if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener('click', closeDocDrawer);
+
+// Drawer: prompts
+const mobilePromptsOverlay = document.getElementById('mobile-prompts-overlay');
+const mobilePromptsDrawer = document.getElementById('mobile-prompts-drawer');
+const mobilePromptList = document.getElementById('mobile-prompt-list');
+const btnPromptsDrawerClose = document.getElementById('btn-prompts-drawer-close');
+
+function openPromptsDrawer() {
+  mobilePromptList.innerHTML = '';
+  const catIconMap = {
+    'Redacción Jurídica': 'pen',
+    'Consulta Normativa': 'book',
+    'Procedimiento': 'checkSquare',
+    'Revisión y Corrección': 'search'
+  };
+  const categories = [...new Set(prompts.map(p => p.category))];
+  for (const cat of categories) {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.className = 'prompt-btn prompt-cat-header';
+    const iconId = catIconMap[cat];
+    if (iconId && icons[iconId]) {
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'prompt-cat-icon';
+      iconSpan.innerHTML = icons[iconId];
+      btn.appendChild(iconSpan);
+    }
+    const textSpan = document.createElement('span');
+    textSpan.textContent = cat;
+    btn.appendChild(textSpan);
+    btn.dataset.category = cat;
+    btn.addEventListener('click', () => {
+      closePromptsDrawer();
+      showPromptsCategory(cat);
+    });
+    li.appendChild(btn);
+    mobilePromptList.appendChild(li);
+  }
+  mobilePromptsDrawer.classList.remove('hidden');
+  mobilePromptsOverlay.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePromptsDrawer() {
+  mobilePromptsDrawer.classList.add('hidden');
+  mobilePromptsOverlay.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+if (btnPromptsDrawerClose) btnPromptsDrawerClose.addEventListener('click', closePromptsDrawer);
+if (mobilePromptsOverlay) mobilePromptsOverlay.addEventListener('click', closePromptsDrawer);
+
+// Bottom nav tap handlers
+document.querySelectorAll('.bottom-nav-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.dataset.section;
+    if (section === 'docs') {
+      openDocDrawer();
+    } else if (section === 'prompts') {
+      openPromptsDrawer();
+    } else if (section === 'drawing') {
+      showDrawingView();
+    }
+  });
+});
+
+
