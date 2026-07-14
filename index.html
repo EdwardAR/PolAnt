@@ -86,12 +86,141 @@
 
       <main id="main-content" role="region" aria-label="Contenido principal">
         <div id="welcome">
-          <div class="welcome-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <!-- Hero -->
+          <div class="welcome-hero">
+            <div class="welcome-hero-bg" aria-hidden="true">
+              <div class="welcome-hero-overlay"></div>
+              <div class="welcome-hero-grid"></div>
+              <div class="welcome-hero-glow welcome-hero-glow-1"></div>
+              <div class="welcome-hero-glow welcome-hero-glow-2"></div>
+            </div>
+            <div class="welcome-hero-content">
+              <div class="welcome-hero-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                PNP · División de Tránsito · Perú
+              </div>
+              <h2 class="welcome-hero-title">Sistema de Gestión<br>de Documentos Viales</h2>
+              <p class="welcome-hero-subtitle">Plataforma oficial para la confección de partes de accidente, actas de infracción y documentación de tránsito, conforme a la normativa peruana vigente.</p>
+              <div class="welcome-hero-actions">
+                <button class="welcome-cta-btn welcome-cta-primary" id="btn-welcome-docs">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Nuevo Documento
+                </button>
+                <button class="welcome-cta-btn welcome-cta-secondary" id="btn-welcome-prompts">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  Explorar Prompts
+                </button>
+              </div>
+              <div class="welcome-hero-stats">
+                <div class="welcome-stat">
+                  <span class="welcome-stat-num">2</span>
+                  <span class="welcome-stat-label">Documentos oficiales</span>
+                </div>
+                <div class="welcome-stat-divider" aria-hidden="true"></div>
+                <div class="welcome-stat">
+                  <span class="welcome-stat-num">16+</span>
+                  <span class="welcome-stat-label">Prompts jurídicos</span>
+                </div>
+                <div class="welcome-stat-divider" aria-hidden="true"></div>
+                <div class="welcome-stat">
+                  <span class="welcome-stat-num">100%</span>
+                  <span class="welcome-stat-label">Sin conexión</span>
+                </div>
+              </div>
+            </div>
+            <div class="welcome-hero-visual" aria-hidden="true">
+              <img src="img/logopolicia.png" alt="" class="welcome-hero-logo">
+            </div>
           </div>
-          <h2>Generador de Documentos</h2>
-          <p>Seleccioná un tipo de documento en el panel lateral para comenzar a confeccionar un documento oficial de tránsito (normativa peruana).</p>
-          <p class="welcome-ai-info">Usá los botones <strong>ChatGPT</strong>, <strong>DeepSeek</strong> y <strong>Gemini</strong> en la barra superior, o explorá los <strong>Prompts para IA</strong> para redacción jurídica y consultas normativas.</p>
+
+          <!-- Módulos -->
+          <div class="welcome-modules">
+            <h3 class="welcome-modules-title">¿Qué necesitás hacer hoy?</h3>
+            <div class="welcome-cards">
+
+              <div class="welcome-card" id="wcard-parte" tabindex="0" role="button" aria-label="Parte de Accidente de Tránsito">
+                <div class="welcome-card-icon welcome-card-icon--red">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div class="welcome-card-body">
+                  <div class="welcome-card-tag">Documento Oficial</div>
+                  <div class="welcome-card-title">Parte de Accidente de Tránsito</div>
+                  <div class="welcome-card-desc">Confeccioná el parte oficial conforme al DS 016-2009-MTC. Incluye datos de vehículos, conductores, lesionados y croquis narrativo.</div>
+                  <div class="welcome-card-meta">
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Ley 27181 · RNT</span>
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ~5 min</span>
+                  </div>
+                </div>
+                <div class="welcome-card-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+
+              <div class="welcome-card" id="wcard-acta" tabindex="0" role="button" aria-label="Acta de Infracción de Tránsito">
+                <div class="welcome-card-icon welcome-card-icon--blue">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
+                <div class="welcome-card-body">
+                  <div class="welcome-card-tag">Documento Oficial</div>
+                  <div class="welcome-card-title">Acta de Infracción de Tránsito</div>
+                  <div class="welcome-card-desc">Labrá el acta de infracción con todos los artículos del Reglamento Nacional de Tránsito. Exportable en Word y PDF.</div>
+                  <div class="welcome-card-meta">
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> DS 016-2009-MTC</span>
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ~3 min</span>
+                  </div>
+                </div>
+                <div class="welcome-card-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+
+              <div class="welcome-card" id="wcard-prompts" tabindex="0" role="button" aria-label="Prompts para IA">
+                <div class="welcome-card-icon welcome-card-icon--green">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <div class="welcome-card-body">
+                  <div class="welcome-card-tag">Asistente IA</div>
+                  <div class="welcome-card-title">Prompts para IA Jurídica</div>
+                  <div class="welcome-card-desc">Más de 16 prompts estructurados para redacción legal, consulta normativa, revisión de infracciones y procedimientos viales.</div>
+                  <div class="welcome-card-meta">
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg> ChatGPT · DeepSeek · Gemini</span>
+                  </div>
+                </div>
+                <div class="welcome-card-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+
+              <div class="welcome-card" id="wcard-drawing" tabindex="0" role="button" aria-label="Herramienta de Dibujo">
+                <div class="welcome-card-icon welcome-card-icon--purple">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17l4-4 3 3 2-2 2 2"/><circle cx="8" cy="9" r="1.5" fill="currentColor" stroke="none"/></svg>
+                </div>
+                <div class="welcome-card-body">
+                  <div class="welcome-card-tag">Herramienta</div>
+                  <div class="welcome-card-title">Diagramas con Draw.io</div>
+                  <div class="welcome-card-desc">Creá croquis de accidentes, mapas viales y diagramas de situación. Gratis, sin cuenta, exportable en PDF y PNG.</div>
+                  <div class="welcome-card-meta">
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> app.diagrams.net</span>
+                  </div>
+                </div>
+                <div class="welcome-card-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Footer normativa -->
+          <div class="welcome-footer">
+            <div class="welcome-footer-badges">
+              <span class="welcome-footer-badge">Ley 27181</span>
+              <span class="welcome-footer-badge">DS 016-2009-MTC</span>
+              <span class="welcome-footer-badge">Reglamento Nacional de Vehículos</span>
+              <span class="welcome-footer-badge">SOAT</span>
+            </div>
+            <p class="welcome-footer-note">Todos los documentos generados son borradores de referencia. Verificá siempre la normativa vigente antes de oficializar.</p>
+          </div>
         </div>
 
         <div id="form-view" class="hidden">

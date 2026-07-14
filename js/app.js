@@ -435,6 +435,56 @@ if (promptSearch) {
 renderSidebar();
 renderPromptSidebar();
 
+// ─── Welcome screen CTAs ────────────────────────────────────────
+
+(function initWelcomeCTAs() {
+  const ids = Object.keys(docRegistry);
+  ids.sort((a, b) => docRegistry[a].title.localeCompare(docRegistry[b].title));
+
+  const wcardParte    = document.getElementById('wcard-parte');
+  const wcardActa     = document.getElementById('wcard-acta');
+  const wcardPrompts  = document.getElementById('wcard-prompts');
+  const wcardDrawing  = document.getElementById('wcard-drawing');
+  const btnWelcomeDocs    = document.getElementById('btn-welcome-docs');
+  const btnWelcomePrompts = document.getElementById('btn-welcome-prompts');
+
+  function activateCard(el) {
+    if (el) {
+      el.addEventListener('click', () => el.click && el.click());
+      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
+    }
+  }
+
+  if (wcardParte) {
+    wcardParte.addEventListener('click', () => selectDocument('parte-accidente'));
+    wcardParte.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectDocument('parte-accidente'); } });
+  }
+  if (wcardActa) {
+    wcardActa.addEventListener('click', () => selectDocument('acta-infraccion'));
+    wcardActa.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectDocument('acta-infraccion'); } });
+  }
+  if (wcardPrompts) {
+    wcardPrompts.addEventListener('click', () => showPromptsCategory(null));
+    wcardPrompts.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showPromptsCategory(null); } });
+  }
+  if (wcardDrawing) {
+    wcardDrawing.addEventListener('click', () => showDrawingView());
+    wcardDrawing.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showDrawingView(); } });
+  }
+  if (btnWelcomeDocs) {
+    btnWelcomeDocs.addEventListener('click', () => {
+      if (isMobile()) { openDocDrawer(); }
+      else if (ids.length > 0) { selectDocument(ids[0]); }
+    });
+  }
+  if (btnWelcomePrompts) {
+    btnWelcomePrompts.addEventListener('click', () => {
+      if (isMobile()) { openPromptsDrawer(); }
+      else { showPromptsCategory(null); }
+    });
+  }
+})();
+
 // ─── Drawing View ──────────────────────────────────────────────
 
 function showDrawingView() {
