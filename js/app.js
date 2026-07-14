@@ -15,6 +15,7 @@ const promptsView = document.getElementById('prompts-view');
 const promptsCategories = document.getElementById('prompts-categories');
 const promptsDetail = document.getElementById('prompts-detail');
 const promptContent = document.getElementById('prompt-content');
+const drawingView = document.getElementById('drawing-view');
 
 function registerDocument(doc) {
   docRegistry[doc.id] = doc;
@@ -48,6 +49,7 @@ function selectDocument(id) {
   formView.classList.remove('hidden');
   previewView.classList.add('hidden');
   promptsView.classList.add('hidden');
+  drawingView.classList.add('hidden');
   formTitle.textContent = doc.title;
   formEngine.clearForm(docForm);
   docForm.innerHTML = '';
@@ -217,6 +219,7 @@ function showPromptsCategory(category) {
   formView.classList.add('hidden');
   previewView.classList.add('hidden');
   promptsView.classList.remove('hidden');
+  drawingView.classList.add('hidden');
   promptsDetail.classList.add('hidden');
   promptsCategories.classList.remove('hidden');
   document.querySelectorAll('.doc-btn, .prompt-btn').forEach(b => b.classList.remove('active'));
@@ -429,3 +432,21 @@ if (promptSearch) {
 
 renderSidebar();
 renderPromptSidebar();
+
+// ─── Drawing View ──────────────────────────────────────────────
+
+function showDrawingView() {
+  welcome.classList.add('hidden');
+  formView.classList.add('hidden');
+  previewView.classList.add('hidden');
+  promptsView.classList.add('hidden');
+  drawingView.classList.remove('hidden');
+  document.querySelectorAll('.doc-btn, .prompt-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('btn-open-drawing');
+  if (btn) btn.classList.add('active');
+}
+
+const btnOpenDrawing = document.getElementById('btn-open-drawing');
+if (btnOpenDrawing) {
+  btnOpenDrawing.addEventListener('click', showDrawingView);
+}

@@ -71,6 +71,17 @@
           <h2>Prompts para IA</h2>
           <ul id="prompt-list"></ul>
         </div>
+        <div class="sidebar-section">
+          <h2>Dibujo</h2>
+          <ul id="drawing-list">
+            <li>
+              <button class="doc-btn" id="btn-open-drawing">
+                <span class="drawing-sidebar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17l4-4 3 3 2-2 2 2"/><circle cx="8" cy="9" r="1.5" fill="currentColor" stroke="none"/></svg></span>
+                <span>Draw.io</span>
+              </button>
+            </li>
+          </ul>
+        </div>
       </nav>
 
       <main id="main-content" role="region" aria-label="Contenido principal">
@@ -125,6 +136,34 @@
           <div id="prompts-detail" class="hidden">
             <button type="button" id="btn-prompts-back" class="btn btn-secondary">&larr; Volver a la lista</button>
             <div id="prompt-content"></div>
+          </div>
+        </div>
+
+        <div id="drawing-view" class="hidden">
+          <div id="drawing-header">
+            <h2 id="drawing-title">Herramienta de Dibujo</h2>
+            <p id="drawing-subtitle">Creá diagramas, croquis de accidentes y mapas de situaci&oacute;n con Draw.io directamente desde el navegador.</p>
+          </div>
+          <div class="drawing-card">
+            <div class="drawing-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17l4-4 3 3 2-2 2 2"/><circle cx="8" cy="9" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <div class="drawing-card-body">
+              <div class="drawing-card-title">Draw.io — Diagrams.net</div>
+              <div class="drawing-card-desc">Herramienta gratuita para crear diagramas, croquis de accidentes de tr&aacute;nsito, mapas de situaci&oacute;n y esquemas de se&ntilde;al&eacute;tica vial. No requiere cuenta ni instalaci&oacute;n.</div>
+              <div class="drawing-card-features">
+                <span class="drawing-feature-tag">Croquis de accidentes</span>
+                <span class="drawing-feature-tag">Mapas viales</span>
+                <span class="drawing-feature-tag">Diagramas</span>
+                <span class="drawing-feature-tag">Exportar PDF / PNG</span>
+              </div>
+            </div>
+            <div class="drawing-card-actions">
+              <a href="https://app.diagrams.net/" target="_blank" rel="noopener" class="btn btn-primary drawing-btn-open">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Abrir Draw.io
+              </a>
+            </div>
           </div>
         </div>
       </main>

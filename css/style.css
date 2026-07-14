@@ -1872,3 +1872,238 @@ textarea:invalid:not(:placeholder-shown) ~ .form-error {
     font-size: 11pt;
   }
 }
+
+/* ============================================
+   DRAWING VIEW
+   ============================================ */
+#drawing-view {
+  max-width: 760px;
+  margin: 0 auto;
+  animation: fadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+#drawing-header {
+  margin-bottom: 28px;
+}
+
+#drawing-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+#drawing-subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  max-width: 540px;
+  line-height: 1.6;
+}
+
+.drawing-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 36px 40px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  transition: box-shadow var(--transition), border-color var(--transition-fast);
+}
+
+.drawing-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-primary-border);
+}
+
+.drawing-card-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--color-primary-lighter);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-light);
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(26,58,92,0.08);
+}
+
+.drawing-card-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.drawing-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.drawing-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+}
+
+.drawing-card-desc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.drawing-card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.drawing-feature-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--color-primary-light);
+  background: var(--color-primary-lighter);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.drawing-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.drawing-btn-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-size: 14px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.drawing-sidebar-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  opacity: 0.55;
+}
+
+.drawing-sidebar-icon svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+#btn-open-drawing.active .drawing-sidebar-icon {
+  opacity: 0.9;
+}
+
+/* ---- Responsive drawing card ---- */
+@media (max-width: 640px) {
+  #drawing-view {
+    max-width: 100%;
+  }
+
+  .drawing-card {
+    flex-direction: column;
+    padding: 24px 22px;
+    gap: 20px;
+  }
+
+  .drawing-card-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .drawing-card-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .drawing-card-title {
+    font-size: 18px;
+  }
+
+  .drawing-card-actions {
+    width: 100%;
+  }
+
+  .drawing-btn-open {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .drawing-card {
+    padding: 18px 16px;
+  }
+
+  #drawing-title {
+    font-size: 20px;
+  }
+
+  #drawing-subtitle {
+    font-size: 14px;
+  }
+
+  .drawing-card-desc {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 360px) {
+  #app-header h1 {
+    font-size: 13px;
+  }
+
+  #main-content {
+    padding: 10px 12px;
+  }
+
+  .form-section-card {
+    padding: 12px 14px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 11px;
+    font-size: 14px;
+  }
+
+  .doc-btn,
+  .prompt-btn {
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+
+  #form-title {
+    font-size: 17px;
+  }
+
+  .prompt-card {
+    padding: 14px 14px;
+  }
+
+  #preview-content {
+    padding: 12px 10px;
+    font-size: 11pt;
+  }
+}
